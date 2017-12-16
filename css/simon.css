@@ -1,5 +1,14 @@
+body
+{
+  background-color: #a6a6a6;
+}
 h1
 {
   font: 20px;
 }
 
+#middle
+{
+  stroke-opacity: 0.3;
+  fill: grey;
+}
