@@ -2,13 +2,23 @@ body
 {
   background-color: #a6a6a6;
 }
-/*h1
+
+#blue
 {
-  font: 20px;
+  fill: blue;
 }
 
-#middle
+#green
 {
-  stroke-opacity: 0.3;
-  fill: grey;
-}*/
+  fill: green;
+}
+
+#red
+{
+  fill: red;
+}
+
+#yellow
+{
+  fill: yellow;
+}
