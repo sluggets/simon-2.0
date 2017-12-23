@@ -1,0 +1,16 @@
+Pay some mind to colors, design sense
+
+GAME-ON-BUTTON
+  Set up handler for the "master switch" of sorts, the on/off button. This is going to:
+    1) Illuminate the score-count display and ensure it is set to "00".
+    2) Toggle on-flag to "true". Other buttons will check this value to decide whether to actually perform any functions/set globals or simply do nothing.
+    3) Graphically indicate that "game-on-button" is selected and "game-off-button" is de-selected.
+
+GAME-OFF-BUTTON
+  Use "master switch" handler.
+    1) Darken score-count display, set to "00".
+    2) Toggle on-flag to "false". 
+    3) Reset/Erase ALL globals!  
+    4) Set all conditions to initial state.
+
+STRICT-MODE-BUTTON
