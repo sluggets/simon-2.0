@@ -14,3 +14,32 @@ GAME-OFF-BUTTON
     4) Set all conditions to initial state.
 
 STRICT-MODE-BUTTON
+
+    1) Illuminates strict-mode-indicator
+    2) If global user-entered pattern is incorrect, plays error beep, resets
+score-count display to zero, and restarts game with new random series of button presses.
+    3) Strict-mode-button MUST be pressed and logged into a global BEFORE the start-game-button is pressed.
+
+START-GAME-BUTTON
+
+    1) clears user-entered global array
+    2) clears computer-entered global array
+    3) sets score-count to "00"
+    4) calls random color selector to choose first color to initiate the pattern
+    5) utilizes global array to store the first color
+    6) will be comparing length of global array to user entered array
+
+COLOR BUTTONS
+
+    1) After user presses a button, that color is appended into the user entry global array. 
+    2) If userEntry.length == computerEntry.length, a for loop will compare each element of both arrays for equality. 
+    3) If strict mode is enabled, and there is no equality, error beep will sound and start-game-button will be virtually pressed
+    4) If strict mode is NOT enabled, and there is no equality, the last appended item in userEntry array will be deleted (slice, pop, whatever). Then the computerEntry array will simply repeat itself.
+    5) if there IS equality, then random color selector will add another color to computerEntry array and repeat pattern.
+
+BUTTON PRESS FUNCTION
+  Will need a function to do these things:
+    1) Play appropriate button sound
+    2) Simultaneously darken opacity by whatever percent to just indicate it is pressed.
+  This function will of course be utilized by both the computer and the player
+  It will take as an argument the color to know what tone to play
