@@ -3,29 +3,43 @@ body
   background-color: #a6a6a6;
 }
 
+tspan
+{
+  font-family: 'Audiowide', cursive;
+}
+
+.buttons
+{
+  stroke: #787878;
+}
+
 #blue
 {
-  fill: #44536C;
+  fill: rgba(0, 249, 255, 0.3);
 }
 
-#purple
+#green
 {
-  fill: #61426C;
+  fill: rgba(57, 255, 20, 0.3);
 }
 
-#red
+#pink
 {
-  fill: #A37260;
+  fill: rgba(255, 105, 180, 0.3);
 }
 
 #yellow
 {
-  fill: #9DA15F;
+  fill: rgba(255, 255, 0, 0.3); 
 }
 
 #score-count
 {
+  font-size: 10px;
+}
 
+#score-text
+{
 }
 
 #count-box
