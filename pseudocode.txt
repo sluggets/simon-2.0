@@ -55,3 +55,6 @@ POSSIBLE GLOBALS NEEDED
   2) Array of computer-generated button-presses
   3) Array to store use-entered button-presses 
   4) Strict mode boolean flag. Provides indication for checks on what to do if user entered pattern is incorrect.
+
+RGBA OPACITY FOR DEPRESSED BUTTON
+1.0 to 0.3
