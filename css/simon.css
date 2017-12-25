@@ -5,22 +5,22 @@ body
 
 #blue
 {
-  fill: blue;
+  fill: #44536C;
 }
 
-#green
+#purple
 {
-  fill: green;
+  fill: #61426C;
 }
 
 #red
 {
-  fill: red;
+  fill: #A37260;
 }
 
 #yellow
 {
-  fill: yellow;
+  fill: #9DA15F;
 }
 
 #score-count
