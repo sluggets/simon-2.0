@@ -43,3 +43,15 @@ BUTTON PRESS FUNCTION
     2) Simultaneously darken opacity by whatever percent to just indicate it is pressed.
   This function will of course be utilized by both the computer and the player
   It will take as an argument the color to know what tone to play
+
+ARRAY COMPARING FUNCTION
+  Loops through computer-generated array and user-entered array, checking for equality.
+
+CLEAR GLOBALS FUNCTION
+  This will clear all the globals, to clear the gaming board
+
+POSSIBLE GLOBALS NEEDED
+  1) Boolean "on-flag", true for game on, false means game off
+  2) Array of computer-generated button-presses
+  3) Array to store use-entered button-presses 
+  4) Strict mode boolean flag. Provides indication for checks on what to do if user entered pattern is incorrect.
