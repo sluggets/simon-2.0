@@ -49,10 +49,20 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   onButton.addEventListener("mousedown", function () {
+    // if already on ignore button press
+    if (onFlag)
+    {
+      return;
+    }
     onOffToggle(onButton, offButton);
   });  
 
   offButton.addEventListener("mousedown", function () {
+    // if already off ignore button press
+    if (!onFlag)
+    {
+      return;
+    }
     onOffToggle(onButton, offButton);
   });
 });
@@ -98,7 +108,6 @@ function strictToggle()
 // also initializes/deinitializes game state and appropriate globals
 function onOffToggle(on, off)
 {
-  console.log("strict status is: " + strictMode);
   if (onFlag)
   {
     off.style.fill = "#404040";  
