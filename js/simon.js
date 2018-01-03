@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   
   strictPress.addEventListener("mousedown", function () {
+    if (!onFlag)
+    {
+      return;
+    }
     buttonsVisualFeedback(strictPress);
     strictToggle();
   });
@@ -76,6 +80,15 @@ function strictToggle()
   else
   {
     var strictIndicator = document.getElementById("strict-mode-indicator-false");
+    // this if statement handles if game is turned off while in strict mode
+    // it will turn off strict mode indicator, it returns after that because
+    // the onOffToggle() function will handle toggling the strict mode status
+    if (strictIndicator == null)
+    {
+      var strictIndicator = document.getElementById("strict-mode-indicator-true");
+      strictIndicator.id = "strict-mode-indicator-false"; 
+      return; 
+    }
     strictIndicator.id = "strict-mode-indicator-true";
   }
   strictMode = !strictMode;    
@@ -85,12 +98,18 @@ function strictToggle()
 // also initializes/deinitializes game state and appropriate globals
 function onOffToggle(on, off)
 {
+  console.log("strict status is: " + strictMode);
   if (onFlag)
   {
     off.style.fill = "#404040";  
     on.style.fill = "#808080";
     scoreCount = 0;
-    strictMode = !strictMode;
+    onFlag = !onFlag;
+    if (strictMode)
+    {
+      strictToggle();
+      strictMode = false;
+    }
     updateScoreDisplay(-1);
   }
   else
@@ -98,9 +117,10 @@ function onOffToggle(on, off)
     off.style.fill = "#808080";
     on.style.fill = "#404040";
     updateScoreDisplay(0);
+    onFlag = !onFlag;  
   }
+  console.log("strict status is: " + strictMode);
 
-  onFlag = !onFlag;  
 }
 
 // this function handles changing/updating/shutting down score-count display
