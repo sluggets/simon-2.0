@@ -1,24 +1,38 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+  // grabs button ids to manipulate them
   var bluePress = document.getElementById("blue");
-  bluePress.addEventListener("click", function () {
-    alert("clicked blue");
-  });
-
   var greenPress = document.getElementById("green");
-  greenPress.addEventListener("click", function () {
-    alert("clicked green"); 
-  });
-
   var yellowPress = document.getElementById("yellow");
-  yellowPress.addEventListener("click", function () {
-    alert("clicked yellow"); 
+  var redPress = document.getElementById("red");
+
+  // sets listeners for when mousedowns happen to change button colors
+  bluePress.addEventListener("mousedown", function () {
+    buttonsVisualFeedback(bluePress);
   });
 
-  var redPress = document.getElementById("red");
-  redPress.addEventListener("click", function () {
-    alert("clicked red"); 
+  greenPress.addEventListener("mousedown", function () {
+    buttonsVisualFeedback(greenPress);
+  });
+
+  yellowPress.addEventListener("mousedown", function () {
+    buttonsVisualFeedback(yellowPress);
+  });
+
+  redPress.addEventListener("mousedown", function () {
+    buttonsVisualFeedback(redPress);
   });
   
 });
 
 // Add function definitions below here
+
+// triggers color flash to indicate button has been pressed
+function buttonsVisualFeedback(type)
+{
+  var unpressedColor = type.id
+  type.id = unpressedColor + "-press";
+  type.addEventListener("mouseup", function () {
+    type.id = unpressedColor;
+  });
+}
