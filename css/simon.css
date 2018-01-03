@@ -56,8 +56,9 @@ tspan
 
 #score-count
 {
-  font-size: 10px;
-  fill: white;
+  font-size: 11px;
+  fill: #e8e8e8;
+  font-family: 'Orbitron', sans-serif;
 }
 
 #score-text
@@ -108,4 +109,3 @@ tspan
 {
   fill: red;
 }
-
