@@ -18,9 +18,20 @@ tspan
   fill: rgba(0, 249, 255, 0.3);
 }
 
+#blue-press
+{
+  fill: rgba(0, 249, 255, 1.0);
+
+}
+
 #green
 {
   fill: rgba(57, 255, 20, 0.3);
+}
+
+#green-press
+{
+  fill: rgba(57, 255, 20, 1.0);
 }
 
 #red
@@ -28,14 +39,25 @@ tspan
   fill: rgba(255, 105, 180, 0.3);
 }
 
+#red-press
+{
+  fill: rgba(255, 105, 180, 1.0);
+}
+
 #yellow
 {
   fill: rgba(255, 255, 0, 0.3); 
 }
 
+#yellow-press
+{
+  fill: rgba(255, 255, 0, 1.0); 
+}
+
 #score-count
 {
   font-size: 10px;
+  fill: white;
 }
 
 #score-text
@@ -44,7 +66,7 @@ tspan
 
 #count-box
 {
-
+  fill: black;
 }
 
 #start-game-button
@@ -59,12 +81,12 @@ tspan
 
 #game-on-button
 {
-
+  fill: #808080
 }
 
 #game-off-button
 {
-
+  fill: #404040; 
 }
 
 #strict-mode-indicator
