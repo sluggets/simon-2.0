@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // global that indicates game's strict mode status
   strictMode = false;
 
+  // global holds score
+  scoreCount = 0;
+
   // grabs button ids to manipulate them
   var bluePress = document.getElementById("blue");
   var greenPress = document.getElementById("green");
@@ -86,12 +89,37 @@ function onOffToggle(on, off)
   {
     off.style.fill = "#404040";  
     on.style.fill = "#808080";
+    scoreCount = 0;
+    strictMode = !strictMode;
+    updateScoreDisplay(-1);
   }
   else
   {
     off.style.fill = "#808080";
     on.style.fill = "#404040";
+    updateScoreDisplay(0);
   }
 
   onFlag = !onFlag;  
+}
+
+// this function handles changing/updating/shutting down score-count display
+function updateScoreDisplay(num)
+{
+  // grabs score-count display
+  var scoreCountDisplay = document.getElementById("score-count"); 
+  var scoreToDisplay = num;
+
+  if (num < 0)
+  {
+    scoreCountDisplay.innerHTML = "";  
+  }
+  else
+  {
+    if (num < 10)
+    {
+      scoreToDisplay = "0" + num; 
+    }
+    scoreCountDisplay.innerHTML = scoreToDisplay;
+  }
 }
