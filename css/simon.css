@@ -66,17 +66,27 @@ tspan
 
 #count-box
 {
-  fill: black;
+  fill: #404040;
 }
 
 #start-game-button
 {
+  fill: rgba(204, 0, 0, 0.7);
+}
 
+#start-game-button-press
+{
+  fill: rgba(204, 0, 0, 1.0);
 }
 
 #strict-mode-button
 {
+  fill: rgba(204, 0, 0, 0.7);
+}
 
+#strict-mode-button-press
+{
+  fill: rgba(204, 0, 0, 1.0);
 }
 
 #game-on-button
@@ -89,8 +99,13 @@ tspan
   fill: #404040; 
 }
 
-#strict-mode-indicator
+#strict-mode-indicator-false
 {
+  fill: #404040;
+}
 
+#strict-mode-indicator-true
+{
+  fill: red;
 }
 
