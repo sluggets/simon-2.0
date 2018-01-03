@@ -56,6 +56,7 @@ POSSIBLE GLOBALS NEEDED
   3) Array to store use-entered button-presses 
   4) Strict mode boolean flag. Provides indication for checks on what to do if user entered pattern is incorrect.
 
+IF SCORE IS 20 VICTORY CONDITION IS REACHED, NOTIFY PLAYER, START GAME OVER!
 RGBA OPACITY FOR DEPRESSED BUTTON
 1.0 to 0.3
 
