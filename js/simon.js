@@ -27,26 +27,26 @@ document.addEventListener("DOMContentLoaded", function() {
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(bluePress);
-    var audio = new Audio('audio/simonSound1.mp3');
-    audio.play();
+    /*var audio = new Audio('audio/simonSound1.mp3');
+    audio.play();*/
   });
 
   greenPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(greenPress);
-    var audio = new Audio('audio/simonSound2.mp3');
-    audio.play();
+    /*var audio = new Audio('audio/simonSound2.mp3');
+    audio.play();*/
   });
 
   yellowPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(yellowPress);
-    var audio = new Audio('audio/simonSound3.mp3');
-    audio.play();
+    /*var audio = new Audio('audio/simonSound3.mp3');
+    audio.play();*/
   });
 
   redPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(redPress);
-    var audio = new Audio('audio/simonSound4.mp3');
-    audio.play();
+    /*var audio = new Audio('audio/simonSound4.mp3');
+    audio.play();*/
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -56,7 +56,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     buttonsVisualFeedback(startPress);
     winningPatternArr = startGame();    
-    playPattern();
+    setTimeout(function() {
+      playPattern();
+    },1500);
   });
   
   strictPress.addEventListener("mousedown", function () {
@@ -100,7 +102,15 @@ document.addEventListener("DOMContentLoaded", function() {
 // triggers color flash to indicate button has been pressed
 function buttonsVisualFeedback(type)
 {
+  // plays button sounds only for main four color buttons
+  if (type.id != "start-game-button" && type.id != "strict-mode-button")
+  {
+    var audioLocation = "audio/" + type.id + ".mp3";
+  }
+  var audio = new Audio(audioLocation);
+  audio.play();
   var unpressedColor = type.id
+  console.log("color pressed: " + type.id);
   type.id = unpressedColor + "-press";
   type.addEventListener("mouseup", function () {
     type.id = unpressedColor;
@@ -215,12 +225,15 @@ function playPattern()
   for (var i = 0; i <= patternCount; i++)
   {
     console.log("feedback: " + winningPatternArr[patternCount] + "Press");
-    var evt = new MouseEvent("mousedown", {
+    /*var evt = new MouseEvent("mousedown", {
 
-    });
+    });*/
     var currentPress = document.getElementById(winningPatternArr[patternCount]); 
     buttonsVisualFeedback(currentPress);
-    
+    setTimeout(function() {
+      var evt = new MouseEvent("mouseup");
+      currentPress.dispatchEvent(evt); 
+    },1000);
   }  
   patternCount++;
 }
