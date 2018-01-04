@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // global that indicates game's strict mode status
   strictMode = false;
 
-  // global holds score
+  // MAY NOT NEED THIS!!! global holds score
   //scoreCount = 0;
 
   // global holds count to track how far along we are in the pattern
@@ -27,26 +27,18 @@ document.addEventListener("DOMContentLoaded", function() {
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(bluePress);
-    /*var audio = new Audio('audio/simonSound1.mp3');
-    audio.play();*/
   });
 
   greenPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(greenPress);
-    /*var audio = new Audio('audio/simonSound2.mp3');
-    audio.play();*/
   });
 
   yellowPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(yellowPress);
-    /*var audio = new Audio('audio/simonSound3.mp3');
-    audio.play();*/
   });
 
   redPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(redPress);
-    /*var audio = new Audio('audio/simonSound4.mp3');
-    audio.play();*/
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -109,6 +101,8 @@ function buttonsVisualFeedback(type)
   }
   var audio = new Audio(audioLocation);
   audio.play();
+
+  // toggles button colors
   var unpressedColor = type.id
   console.log("color pressed: " + type.id);
   type.id = unpressedColor + "-press";
@@ -150,7 +144,7 @@ function onOffToggle(on, off)
   {
     off.style.fill = "#404040";  
     on.style.fill = "#808080";
-    //scoreCount = 0;
+    //THIS VAR MAY NOT BE NEEDED scoreCount = 0;
     onFlag = !onFlag;
     if (strictMode)
     {
@@ -213,7 +207,7 @@ function randomPatternSelector()
 // the game
 function startGame()
 {
-  //scoreCount = 0;
+  //THIS VAR MAY NOT BE NEEDED scoreCount = 0;
   patternCount = 0;
   return randomPatternSelector();
 }
@@ -225,10 +219,13 @@ function playPattern()
   for (var i = 0; i <= patternCount; i++)
   {
     console.log("feedback: " + winningPatternArr[patternCount] + "Press");
-    /*var evt = new MouseEvent("mousedown", {
-
-    });*/
-    var currentPress = document.getElementById(winningPatternArr[patternCount]); 
+    var currentPress = document.getElementById(winningPatternArr[patternCount]);
+   
+    // what happens below is that a MouseEvent("mousedown") is not need for
+    // the computer to CLICK the button, because buttonsVisualFeedback handles
+    // what would happen anyway if the click happened. What IS needed is for
+    // the computer "button press" to unclick itself, thus the need for the
+    // MouseEvent("mouseup") below.
     buttonsVisualFeedback(currentPress);
     setTimeout(function() {
       var evt = new MouseEvent("mouseup");
