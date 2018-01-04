@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
   // global holds score
   scoreCount = 0;
 
+  // global holds count to track how far along we are in the pattern
+  patternCount = 0;
+
+  // global holds winning pattern 
+  winningPatternArr = [];
+
   // grabs button ids to manipulate them
   var bluePress = document.getElementById("blue");
   var greenPress = document.getElementById("green");
@@ -36,7 +42,12 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   startPress.addEventListener("mousedown", function () {
+    if (!onFlag)
+    {
+      return;
+    }
     buttonsVisualFeedback(startPress);
+    winningPatternArr = startGame();    
   });
   
   strictPress.addEventListener("mousedown", function () {
@@ -45,7 +56,15 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
     buttonsVisualFeedback(strictPress);
-    strictToggle();
+    if (winningPatternArr.length != 0)
+    {
+      strictToggle()
+      startGame();
+    }
+    else
+    {
+      strictToggle();
+    }
   });
 
   onButton.addEventListener("mousedown", function () {
@@ -120,6 +139,8 @@ function onOffToggle(on, off)
       strictMode = false;
     }
     updateScoreDisplay(-1);
+    patternCount = 0;
+    winningPatternArr = [];
   }
   else
   {
@@ -151,4 +172,28 @@ function updateScoreDisplay(num)
     }
     scoreCountDisplay.innerHTML = scoreToDisplay;
   }
+}
+
+// this function randomly selects 20 colors to hold in an array
+// to use as winning pattern
+function randomPatternSelector()
+{
+  var pattArr = []
+  for (var i = 0; i < 20; i++)
+  {
+    pattArr.push((Math.floor(Math.random() * 4)))
+  }
+
+  console.log("pattArr: " + pattArr);
+  return pattArr;
+}
+
+// either starts or restarts the game, also this is called when 
+// strict is pressed after game has already begun, effectively restarting
+// the game
+function startGame()
+{
+  scoreCount = 0;
+  patternCount = 0;
+  return randomPatternSelector();
 }
