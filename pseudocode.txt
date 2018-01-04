@@ -19,6 +19,7 @@ STRICT-MODE-BUTTON
     2) If global user-entered pattern is incorrect, plays error beep, resets
 score-count display to zero, and restarts game with new random series of button presses.
     3) Strict-mode-button MUST be pressed and logged into a global BEFORE the start-game-button is pressed.
+    4) If strict mode button is pressed after play is started (e.g. a tone and color has already been played) then it is the same as hitting the start button again to start the game over. Check should be length of randomPatternArr?
 
 START-GAME-BUTTON
 
