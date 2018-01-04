@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   strictMode = false;
 
   // global holds score
-  scoreCount = 0;
+  //scoreCount = 0;
 
   // global holds count to track how far along we are in the pattern
   patternCount = 0;
@@ -27,18 +27,26 @@ document.addEventListener("DOMContentLoaded", function() {
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(bluePress);
+    var audio = new Audio('audio/simonSound1.mp3');
+    audio.play();
   });
 
   greenPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(greenPress);
+    var audio = new Audio('audio/simonSound2.mp3');
+    audio.play();
   });
 
   yellowPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(yellowPress);
+    var audio = new Audio('audio/simonSound3.mp3');
+    audio.play();
   });
 
   redPress.addEventListener("mousedown", function () {
     buttonsVisualFeedback(redPress);
+    var audio = new Audio('audio/simonSound4.mp3');
+    audio.play();
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -48,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     buttonsVisualFeedback(startPress);
     winningPatternArr = startGame();    
+    playPattern();
   });
   
   strictPress.addEventListener("mousedown", function () {
@@ -131,7 +140,7 @@ function onOffToggle(on, off)
   {
     off.style.fill = "#404040";  
     on.style.fill = "#808080";
-    scoreCount = 0;
+    //scoreCount = 0;
     onFlag = !onFlag;
     if (strictMode)
     {
@@ -181,7 +190,8 @@ function randomPatternSelector()
   var pattArr = []
   for (var i = 0; i < 20; i++)
   {
-    pattArr.push((Math.floor(Math.random() * 4)))
+    var buttonMap = ['green', 'yellow', 'red', 'blue'];
+    pattArr.push(buttonMap[(Math.floor(Math.random() * 4))]);
   }
 
   console.log("pattArr: " + pattArr);
@@ -193,7 +203,24 @@ function randomPatternSelector()
 // the game
 function startGame()
 {
-  scoreCount = 0;
+  //scoreCount = 0;
   patternCount = 0;
   return randomPatternSelector();
+}
+
+// this function plays appropriate length pattern depending on
+// number of correct plays
+function playPattern()
+{
+  for (var i = 0; i <= patternCount; i++)
+  {
+    console.log("feedback: " + winningPatternArr[patternCount] + "Press");
+    var evt = new MouseEvent("mousedown", {
+
+    });
+    var currentPress = document.getElementById(winningPatternArr[patternCount]); 
+    buttonsVisualFeedback(currentPress);
+    
+  }  
+  patternCount++;
 }
