@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // global holds winning pattern 
   winningPatternArr = [];
 
+  // global holds user pattern
+  userPatternArr = [];
+
   // grabs button ids to manipulate them
   var bluePress = document.getElementById("blue");
   var greenPress = document.getElementById("green");
@@ -26,19 +29,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
+    console.log("user enters blue");
+    userPatternArr.push(bluePress.id);
     buttonsVisualFeedback(bluePress);
+    checkUserAccuracy();
   });
 
   greenPress.addEventListener("mousedown", function () {
+    console.log("user enters green");
+    userPatternArr.push(greenPress.id); 
+    console.log("this is id: " + greenPress.id);
     buttonsVisualFeedback(greenPress);
+    checkUserAccuracy();
   });
 
   yellowPress.addEventListener("mousedown", function () {
+    console.log("user enters yellow");
+    userPatternArr.push(yellowPress.id); 
     buttonsVisualFeedback(yellowPress);
+    checkUserAccuracy();
   });
 
   redPress.addEventListener("mousedown", function () {
+    console.log("user enters red");
+    userPatternArr.push(redPress.id); 
     buttonsVisualFeedback(redPress);
+    checkUserAccuracy();
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -94,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // triggers color flash to indicate button has been pressed
 function buttonsVisualFeedback(type)
 {
+  console.log("type.id " + type.id);
   // plays button sounds only for main four color buttons
   if (type.id != "start-game-button" && type.id != "strict-mode-button")
   {
@@ -107,6 +124,7 @@ function buttonsVisualFeedback(type)
   console.log("color pressed: " + type.id);
   type.id = unpressedColor + "-press";
   type.addEventListener("mouseup", function () {
+    console.log("ASSIGNING unpressedColor this->" + unpressedColor);
     type.id = unpressedColor;
   });
 }
@@ -219,13 +237,21 @@ function playPattern()
   for (var i = 0; i <= patternCount; i++)
   {
     console.log("feedback: " + winningPatternArr[patternCount] + "Press");
-    var currentPress = document.getElementById(winningPatternArr[patternCount]);
+    console.log("patternCount: " + patternCount);
+    console.log("winningPatternArr[" + patternCount + "]->" + winningPatternArr[patternCount]);
+    //var currentPress = document.getElementById(winningPatternArr[patternCount]);
+    var currentPress = document.getElementById(winningPatternArr[i]);
    
+    /*if (currentPress == null)
+    {
+      
+    }*/
     // what happens below is that a MouseEvent("mousedown") is not need for
     // the computer to CLICK the button, because buttonsVisualFeedback handles
     // what would happen anyway if the click happened. What IS needed is for
     // the computer "button press" to unclick itself, thus the need for the
     // MouseEvent("mouseup") below.
+    console.log("currentPress " + currentPress);
     buttonsVisualFeedback(currentPress);
     setTimeout(function() {
       var evt = new MouseEvent("mouseup");
@@ -233,4 +259,21 @@ function playPattern()
     },1000);
   }  
   patternCount++;
+}
+
+// this function compares the user array to the computer array for mistakes
+function checkUserAccuracy()
+{
+  for (var i = 0; i < userPatternArr.length; i++)
+  {
+    if (userPatternArr[i] != winningPatternArr[i])
+    {
+      console.log("LOSE!");
+    }
+  }
+  console.log("Preparing to make next CPU play");
+  setTimeout(function() {
+    playPattern();
+  },1500);
+  
 }
