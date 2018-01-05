@@ -254,18 +254,20 @@ function startGame()
 // number of correct plays
 function playPattern()
 {
-  for (var i = 0; i <= patternCount; i++)
+  for (var i = 0; i < patternCount + 1; i++)
   {
     console.log("feedback: " + winningPatternArr[i] + "Press");
     console.log("patternCount: " + patternCount);
-    //console.log("winningPatternArr[" + patternCount + "]->" + winningPatternArr[patternCount]);
-    //var currentPress = document.getElementById(winningPatternArr[patternCount]);
+    console.log("winningPatternArr[" + patternCount + "]->" + winningPatternArr[i]);
+
     var currentPress = document.getElementById(winningPatternArr[i]);
-   
-    /*if (currentPress == null)
+    //var currentPressTest = document.getElementById(winningPatternArr[i] + "-press");   
+    if (currentPress == null)
     {
-      
-    }*/
+      setTimeout(function() {
+        var currentPress = document.getElementById(winningPatternArr[i]);
+      },1000);
+    }
     // what happens below is that a MouseEvent("mousedown") is not need for
     // the computer to CLICK the button, because buttonsVisualFeedback handles
     // what would happen anyway if the click happened. What IS needed is for
@@ -280,6 +282,7 @@ function playPattern()
       currentPress.dispatchEvent(evt); 
     },1000);*/
   }  
+  console.log("leaving for loop, incrementing count");
   patternCount++;
 }
 
@@ -313,7 +316,7 @@ function computerPress(type)
   console.log("color pressed: " + type.id);
   type.id = unpressedColor + "-press";
   type.addEventListener("mouseup", function () {
-    console.log("ASSIGNING unpressedColor this->" + unpressedColor);
+    console.log("ASSIGNING unpressedColor this in COMPUTERPRESS->" + unpressedColor);
     type.id = unpressedColor;
   });
   console.log("YO, UNPRESSED COLOR IS: " + unpressedColor);
