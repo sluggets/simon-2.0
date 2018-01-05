@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function() {
   greenPress.addEventListener("mousedown", function () {
     console.log("user enters green");
     userPatternArr.push(greenPress.id); 
-    console.log("this is id: " + greenPress.id);
     buttonsVisualFeedback(greenPress);
     setTimeout(function() {
       checkUserAccuracy();
@@ -122,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // triggers color flash to indicate button has been pressed
 function buttonsVisualFeedback(type)
 {
-  console.log("type.id " + type.id);
   // plays button sounds only for main four color buttons
   if (type.id != "start-game-button" && type.id != "strict-mode-button")
   {
@@ -132,21 +130,18 @@ function buttonsVisualFeedback(type)
   audio.play();
 
   // toggles button colors
-  var unpressedColor = type.id
-  console.log("color pressed: " + type.id);
-  type.id = unpressedColor + "-press";
+  var currentButton = document.getElementById(type.id);
+  var style = window.getComputedStyle(currentButton);
+  var unpressedStyle = style.fill;
+  var pressedStyle = unpressedStyle.slice(0, -4);
+  currentButton.style.fill = pressedStyle + "1.0)";
   type.addEventListener("mouseup", function () {
-    console.log("ASSIGNING unpressedColor this->" + unpressedColor);
-    type.id = unpressedColor;
+    currentButton.style.fill = unpressedStyle; 
   });
-  /*console.log("Attempting to mouseup: " + winningPatternArr[i]);
-  var evt = new MouseEvent("mouseup");
-  currentPress.dispatchEvent(evt); 
   setTimeout(function() {
-    console.log("Attempting to mouseup: " + winningPatternArr[i]);
     var evt = new MouseEvent("mouseup");
-    currentPress.dispatchEvent(evt); 
-  },3000);*/
+    currentButton.dispatchEvent(evt); 
+  },1000);
 }
 
 // this toggles strict mode and appropriate indicator light
@@ -275,7 +270,8 @@ function playPattern()
     // MouseEvent("mouseup") below.
     console.log("currentPress " + currentPress.id);
     //buttonsVisualFeedback(currentPress);
-    computerPress(currentPress);
+    //computerPress(currentPress);
+    buttonsVisualFeedback(currentPress);
     /*setTimeout(function() {
       console.log("Attempting to mouseup: " + winningPatternArr[i-1]);
       var evt = new MouseEvent("mouseup");
