@@ -32,7 +32,10 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("user enters blue");
     userPatternArr.push(bluePress.id);
     buttonsVisualFeedback(bluePress);
-    checkUserAccuracy();
+    setTimeout(function() {
+      checkUserAccuracy();
+    },1000);
+    //checkUserAccuracy();
   });
 
   greenPress.addEventListener("mousedown", function () {
@@ -40,21 +43,30 @@ document.addEventListener("DOMContentLoaded", function() {
     userPatternArr.push(greenPress.id); 
     console.log("this is id: " + greenPress.id);
     buttonsVisualFeedback(greenPress);
-    checkUserAccuracy();
+    setTimeout(function() {
+      checkUserAccuracy();
+    },1000);
+    //checkUserAccuracy();
   });
 
   yellowPress.addEventListener("mousedown", function () {
     console.log("user enters yellow");
     userPatternArr.push(yellowPress.id); 
     buttonsVisualFeedback(yellowPress);
-    checkUserAccuracy();
+    setTimeout(function() {
+      checkUserAccuracy();
+    },1000);
+    //checkUserAccuracy();
   });
 
   redPress.addEventListener("mousedown", function () {
     console.log("user enters red");
     userPatternArr.push(redPress.id); 
     buttonsVisualFeedback(redPress);
-    checkUserAccuracy();
+    setTimeout(function() {
+      checkUserAccuracy();
+    },1000);
+    //checkUserAccuracy();
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -66,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
     winningPatternArr = startGame();    
     setTimeout(function() {
       playPattern();
-    },1500);
+    },1000);
   });
   
   strictPress.addEventListener("mousedown", function () {
@@ -127,6 +139,14 @@ function buttonsVisualFeedback(type)
     console.log("ASSIGNING unpressedColor this->" + unpressedColor);
     type.id = unpressedColor;
   });
+  /*console.log("Attempting to mouseup: " + winningPatternArr[i]);
+  var evt = new MouseEvent("mouseup");
+  currentPress.dispatchEvent(evt); 
+  setTimeout(function() {
+    console.log("Attempting to mouseup: " + winningPatternArr[i]);
+    var evt = new MouseEvent("mouseup");
+    currentPress.dispatchEvent(evt); 
+  },3000);*/
 }
 
 // this toggles strict mode and appropriate indicator light
@@ -236,9 +256,9 @@ function playPattern()
 {
   for (var i = 0; i <= patternCount; i++)
   {
-    console.log("feedback: " + winningPatternArr[patternCount] + "Press");
+    console.log("feedback: " + winningPatternArr[i] + "Press");
     console.log("patternCount: " + patternCount);
-    console.log("winningPatternArr[" + patternCount + "]->" + winningPatternArr[patternCount]);
+    //console.log("winningPatternArr[" + patternCount + "]->" + winningPatternArr[patternCount]);
     //var currentPress = document.getElementById(winningPatternArr[patternCount]);
     var currentPress = document.getElementById(winningPatternArr[i]);
    
@@ -251,12 +271,14 @@ function playPattern()
     // what would happen anyway if the click happened. What IS needed is for
     // the computer "button press" to unclick itself, thus the need for the
     // MouseEvent("mouseup") below.
-    console.log("currentPress " + currentPress);
-    buttonsVisualFeedback(currentPress);
-    setTimeout(function() {
+    console.log("currentPress " + currentPress.id);
+    //buttonsVisualFeedback(currentPress);
+    computerPress(currentPress);
+    /*setTimeout(function() {
+      console.log("Attempting to mouseup: " + winningPatternArr[i-1]);
       var evt = new MouseEvent("mouseup");
       currentPress.dispatchEvent(evt); 
-    },1000);
+    },1000);*/
   }  
   patternCount++;
 }
@@ -269,6 +291,7 @@ function checkUserAccuracy()
     if (userPatternArr[i] != winningPatternArr[i])
     {
       console.log("LOSE!");
+      // need to stop game here with function
     }
   }
   console.log("Preparing to make next CPU play");
@@ -276,4 +299,29 @@ function checkUserAccuracy()
     playPattern();
   },1500);
   
+}
+
+function computerPress(type)
+{
+  console.log("type.id " + type.id);
+  var audioLocation = "audio/" + type.id + ".mp3";
+  var audio = new Audio(audioLocation);
+  audio.play();
+
+  // toggles button colors
+  var unpressedColor = type.id
+  console.log("color pressed: " + type.id);
+  type.id = unpressedColor + "-press";
+  type.addEventListener("mouseup", function () {
+    console.log("ASSIGNING unpressedColor this->" + unpressedColor);
+    type.id = unpressedColor;
+  });
+  console.log("YO, UNPRESSED COLOR IS: " + unpressedColor);
+  var currentPress = document.getElementById(unpressedColor + "-press");
+  var evt = new MouseEvent("mouseup");
+  setTimeout(function() {
+    //console.log("Attempting to mouseup: " + winningPatternArr[i-1]);
+    //var evt = new MouseEvent("mouseup");
+    currentPress.dispatchEvent(evt); 
+  },1000);
 }
