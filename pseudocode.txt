@@ -65,3 +65,4 @@ OPTIONAL KEYBOARD CONTROLS
 Maybe add event handlers for keyboard controls
 
 Handle buttons playing on top of each other
+May have issues with cpu playing two consecutive similar colors
