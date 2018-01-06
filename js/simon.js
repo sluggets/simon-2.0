@@ -249,36 +249,21 @@ function startGame()
 // number of correct plays
 function playPattern()
 {
-  for (var i = 0; i < patternCount + 1; i++)
+  /*for (var i = 0; i < patternCount + 1; i++)
   {
-    console.log("feedback: " + winningPatternArr[i] + "Press");
-    console.log("patternCount: " + patternCount);
-    console.log("winningPatternArr[" + patternCount + "]->" + winningPatternArr[i]);
-
+    setTimeout(10000);
+    console.log("entering for loop!");
     var currentPress = document.getElementById(winningPatternArr[i]);
-    //var currentPressTest = document.getElementById(winningPatternArr[i] + "-press");   
-    if (currentPress == null)
-    {
-      setTimeout(function() {
-        var currentPress = document.getElementById(winningPatternArr[i]);
-      },1000);
-    }
-    // what happens below is that a MouseEvent("mousedown") is not need for
-    // the computer to CLICK the button, because buttonsVisualFeedback handles
-    // what would happen anyway if the click happened. What IS needed is for
-    // the computer "button press" to unclick itself, thus the need for the
-    // MouseEvent("mouseup") below.
     console.log("currentPress " + currentPress.id);
-    //buttonsVisualFeedback(currentPress);
-    //computerPress(currentPress);
     buttonsVisualFeedback(currentPress);
-    /*setTimeout(function() {
-      console.log("Attempting to mouseup: " + winningPatternArr[i-1]);
-      var evt = new MouseEvent("mouseup");
-      currentPress.dispatchEvent(evt); 
-    },1000);*/
-  }  
-  console.log("leaving for loop, incrementing count");
+  }*/  
+  //patternLoop();
+  /*for (var i = 0; i < patternCount + 1; i++)
+  {
+    var intervalID = window.setInterval(patternLoop, 2000, i);
+    console.log("leaving for loop, incrementing count");
+    clearInterval(intervalID);
+  }*/
   patternCount++;
 }
 
@@ -323,4 +308,18 @@ function computerPress(type)
     //var evt = new MouseEvent("mouseup");
     currentPress.dispatchEvent(evt); 
   },1000);
+}
+
+// delays loop execution so button presses by cpu are not
+// machine gun style
+function patternLoop(iter)
+{
+      //console.log("entering for loop!");
+      /*console.log("feedback: " + winningPatternArr[i] + "Press");
+      console.log("patternCount: " + patternCount);
+      console.log("winningPatternArr[" + patternCount + "]->" + winningPatternArr[i]);*/
+
+      var currentPress = document.getElementById(winningPatternArr[iter]);
+      console.log("currentPress " + currentPress.id);
+      buttonsVisualFeedback(currentPress);
 }
