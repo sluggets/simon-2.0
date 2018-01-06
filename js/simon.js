@@ -245,26 +245,33 @@ function startGame()
   return randomPatternSelector();
 }
 
+
 // this function plays appropriate length pattern depending on
 // number of correct plays
 function playPattern()
 {
+  var counter = 0;
+  (function next() {
+    if (counter > patternCount)
+    {
+      return;
+    } 
+    setTimeout(function() {
+      var currentPress = document.getElementById(winningPatternArr[counter]);
+      buttonsVisualFeedback(currentPress);
+      counter++;
+      next();
+    }, 2000);
+  })();
+      
   /*for (var i = 0; i < patternCount + 1; i++)
   {
-    setTimeout(10000);
     console.log("entering for loop!");
     var currentPress = document.getElementById(winningPatternArr[i]);
     console.log("currentPress " + currentPress.id);
     buttonsVisualFeedback(currentPress);
   }*/  
-  //patternLoop();
-  /*for (var i = 0; i < patternCount + 1; i++)
-  {
-    var intervalID = window.setInterval(patternLoop, 2000, i);
-    console.log("leaving for loop, incrementing count");
-    clearInterval(intervalID);
-  }*/
-  patternCount++;
+  //patternCount++;
 }
 
 // this function compares the user array to the computer array for mistakes
@@ -279,6 +286,7 @@ function checkUserAccuracy()
     }
   }
   console.log("Preparing to make next CPU play");
+  patternCount++;
   setTimeout(function() {
     playPattern();
   },1500);
