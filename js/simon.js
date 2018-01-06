@@ -250,6 +250,8 @@ function startGame()
 // number of correct plays
 function playPattern()
 {
+  /* this bit of code below borrowed in principle from: http://patrickmuff.ch/blog/2014/03/12/for-loop-with-delay-in-javascript/*/
+
   var counter = 0;
   (function next() {
     if (counter > patternCount)
