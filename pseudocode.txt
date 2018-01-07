@@ -66,5 +66,11 @@ RGBA OPACITY FOR DEPRESSED BUTTON
 OPTIONAL KEYBOARD CONTROLS
 Maybe add event handlers for keyboard controls
 
-Handle buttons playing on top of each other
-May have issues with cpu playing two consecutive similar colors
+--DONE--Handle buttons playing on top of each other
+--DONE--May have issues with cpu playing two consecutive similar colors
+
+When lose condition is met, need to slice off incorrect play from
+userPatternArr, and restart computer pattern play
+also, feedback will be double X's (XX) in score count and Simon 
+logo will change to "oops!"
+
