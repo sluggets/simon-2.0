@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // global holds count to track how far along we are in the pattern
   patternCount = 0;
 
+  // global userCount
+  userCount = 0;
+
   // global holds winning pattern 
   winningPatternArr = [];
 
@@ -30,42 +33,118 @@ document.addEventListener("DOMContentLoaded", function() {
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
     console.log("user enters blue");
-    userPatternArr.push(bluePress.id);
+    /*if (userPatternArr.length == patternCount ||
+        patternCount == 1)*/
+    if (userPatternArr.length == userCount)
+    {
+    console.log("userPatternArr.length->" + userPatternArr.length);
+    console.log("patternCount->" + patternCount);
+      console.log("pushing Blue to userPatternArr")
+      userPatternArr.push(bluePress.id);
+    }
     buttonsVisualFeedback(bluePress);
-    setTimeout(function() {
+    userCount++;
+    console.log("userPatternArr.length->" + userPatternArr.length);
+    console.log("patternCount->" + patternCount);
+    if (userCount == patternCount)
+    {
       checkUserAccuracy();
-    },1000);
-    //checkUserAccuracy();
+    }
+    /*if (userPatternArr.length == patternCount && patternCount == 1)
+    {
+      checkUserAccuracy();
+    }
+    else if (patternCount == (userPatternArr.length - 1))
+    {
+      checkUserAccuracy();
+    }*/
   });
 
   greenPress.addEventListener("mousedown", function () {
     console.log("user enters green");
-    userPatternArr.push(greenPress.id); 
+    /*if (userPatternArr.length == patternCount ||
+        patternCount == 1)*/
+    if (userPatternArr.length == userCount)
+    {
+    console.log("userPatternArr.length->" + userPatternArr.length);
+    console.log("patternCount->" + patternCount);
+      console.log("pushing green to userPatternArr")
+      userPatternArr.push(greenPress.id);
+    }
     buttonsVisualFeedback(greenPress);
-    setTimeout(function() {
+    userCount++;
+    console.log("userPatternArr.length->" + userPatternArr.length);
+    console.log("patternCount->" + patternCount);
+    if (userCount == patternCount)
+    {
       checkUserAccuracy();
-    },1000);
-    //checkUserAccuracy();
+    }
+    /*if (userPatternArr.length == patternCount && patternCount == 1)
+    {
+      checkUserAccuracy();
+    }
+    else if (patternCount == (userPatternArr.length - 1))
+    {
+      checkUserAccuracy();
+    }*/
   });
 
   yellowPress.addEventListener("mousedown", function () {
     console.log("user enters yellow");
-    userPatternArr.push(yellowPress.id); 
+    /*if (userPatternArr.length == patternCount ||
+        patternCount == 1)*/
+    if (userPatternArr.length == userCount)
+    {
+    console.log("userPatternArr.length->" + userPatternArr.length);
+    console.log("patternCount->" + patternCount);
+      console.log("pushing yellow to userPatternArr")
+      userPatternArr.push(yellowPress.id);
+    }
     buttonsVisualFeedback(yellowPress);
-    setTimeout(function() {
+    userCount++;
+    console.log("userPatternArr.length->" + userPatternArr.length);
+    console.log("patternCount->" + patternCount);
+    if (userCount == patternCount)
+    {
       checkUserAccuracy();
-    },1000);
-    //checkUserAccuracy();
+    }
+    /*if (userPatternArr.length == patternCount && patternCount == 1)
+    {
+      checkUserAccuracy();
+    }
+    else if (patternCount == (userPatternArr.length - 1))
+    {
+      checkUserAccuracy();
+    }*/
   });
 
   redPress.addEventListener("mousedown", function () {
     console.log("user enters red");
-    userPatternArr.push(redPress.id); 
+    /*if (userPatternArr.length == patternCount ||
+        patternCount == 1)*/
+    if (userPatternArr.length == userCount)
+    {
+    console.log("userPatternArr.length->" + userPatternArr.length);
+    console.log("patternCount->" + patternCount);
+      console.log("pushing red to userPatternArr")
+      userPatternArr.push(redPress.id);
+    }
     buttonsVisualFeedback(redPress);
-    setTimeout(function() {
+    console.log("userPatternArr.length->" + userPatternArr.length);
+    console.log("patternCount->" + patternCount);
+    userCount++;
+    if (userCount == patternCount)
+    {
       checkUserAccuracy();
-    },1000);
-    //checkUserAccuracy();
+    }
+    /*if (userPatternArr.length == patternCount && patternCount == 1)
+    {
+      checkUserAccuracy();
+    }
+    else if (patternCount == (userPatternArr.length - 1))
+    {
+      checkUserAccuracy();
+    }*/
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -75,9 +154,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     buttonsVisualFeedback(startPress);
     winningPatternArr = startGame();    
-    setTimeout(function() {
+    playPattern();
+    /*setTimeout(function() {
       playPattern();
-    },1000);
+    },1000);*/
   });
   
   strictPress.addEventListener("mousedown", function () {
@@ -256,11 +336,17 @@ function playPattern()
   (function next() {
     if (counter > patternCount)
     {
+      patternCount++;
       return;
     } 
     setTimeout(function() {
       var currentPress = document.getElementById(winningPatternArr[counter]);
+      console.log("Going into press button for CPU");
+      console.log("Counter is..." + counter);
+      console.log("patternCount is..." + patternCount);
+      console.log("Going into press button for CPU");
       buttonsVisualFeedback(currentPress);
+      console.log("Incrementing counter NOW");
       counter++;
       next();
     }, 2000);
@@ -279,8 +365,13 @@ function playPattern()
 // this function compares the user array to the computer array for mistakes
 function checkUserAccuracy()
 {
+  userCount = 0;
+  console.log("userPatternArr: " + userPatternArr);
+  console.log("winningPatternArr: " + winningPatternArr);
   for (var i = 0; i < userPatternArr.length; i++)
   {
+    console.log("userPatternArr[" + i + "]->" + userPatternArr[i]);
+    console.log("winningPatternArr[" + i + "]->" + winningPatternArr[i]);
     if (userPatternArr[i] != winningPatternArr[i])
     {
       console.log("LOSE!");
@@ -288,10 +379,11 @@ function checkUserAccuracy()
     }
   }
   console.log("Preparing to make next CPU play");
-  patternCount++;
-  setTimeout(function() {
+  //patternCount++;
+  playPattern();
+  /*setTimeout(function() {
     playPattern();
-  },1500);
+  },1500);*/
   
 }
 
