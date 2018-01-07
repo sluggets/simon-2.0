@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // global holds count to track how far along we are in the pattern
   patternCount = 0;
 
-  // global userCount
+  // global holds how many presses have been make in current patter
+  // before user press is new one and must be pushed into 
+  // userPatternArr. This gets reset in checkUserAccuracy
   userCount = 0;
 
   // global holds winning pattern 
@@ -33,8 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
     console.log("user enters blue");
-    /*if (userPatternArr.length == patternCount ||
-        patternCount == 1)*/
     if (userPatternArr.length == userCount)
     {
     console.log("userPatternArr.length->" + userPatternArr.length);
@@ -50,20 +50,10 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       checkUserAccuracy();
     }
-    /*if (userPatternArr.length == patternCount && patternCount == 1)
-    {
-      checkUserAccuracy();
-    }
-    else if (patternCount == (userPatternArr.length - 1))
-    {
-      checkUserAccuracy();
-    }*/
   });
 
   greenPress.addEventListener("mousedown", function () {
     console.log("user enters green");
-    /*if (userPatternArr.length == patternCount ||
-        patternCount == 1)*/
     if (userPatternArr.length == userCount)
     {
     console.log("userPatternArr.length->" + userPatternArr.length);
@@ -79,20 +69,10 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       checkUserAccuracy();
     }
-    /*if (userPatternArr.length == patternCount && patternCount == 1)
-    {
-      checkUserAccuracy();
-    }
-    else if (patternCount == (userPatternArr.length - 1))
-    {
-      checkUserAccuracy();
-    }*/
   });
 
   yellowPress.addEventListener("mousedown", function () {
     console.log("user enters yellow");
-    /*if (userPatternArr.length == patternCount ||
-        patternCount == 1)*/
     if (userPatternArr.length == userCount)
     {
     console.log("userPatternArr.length->" + userPatternArr.length);
@@ -108,20 +88,10 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       checkUserAccuracy();
     }
-    /*if (userPatternArr.length == patternCount && patternCount == 1)
-    {
-      checkUserAccuracy();
-    }
-    else if (patternCount == (userPatternArr.length - 1))
-    {
-      checkUserAccuracy();
-    }*/
   });
 
   redPress.addEventListener("mousedown", function () {
     console.log("user enters red");
-    /*if (userPatternArr.length == patternCount ||
-        patternCount == 1)*/
     if (userPatternArr.length == userCount)
     {
     console.log("userPatternArr.length->" + userPatternArr.length);
@@ -137,14 +107,6 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       checkUserAccuracy();
     }
-    /*if (userPatternArr.length == patternCount && patternCount == 1)
-    {
-      checkUserAccuracy();
-    }
-    else if (patternCount == (userPatternArr.length - 1))
-    {
-      checkUserAccuracy();
-    }*/
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -155,9 +117,6 @@ document.addEventListener("DOMContentLoaded", function() {
     buttonsVisualFeedback(startPress);
     winningPatternArr = startGame();    
     playPattern();
-    /*setTimeout(function() {
-      playPattern();
-    },1000);*/
   });
   
   strictPress.addEventListener("mousedown", function () {
@@ -352,14 +311,6 @@ function playPattern()
     }, 2000);
   })();
       
-  /*for (var i = 0; i < patternCount + 1; i++)
-  {
-    console.log("entering for loop!");
-    var currentPress = document.getElementById(winningPatternArr[i]);
-    console.log("currentPress " + currentPress.id);
-    buttonsVisualFeedback(currentPress);
-  }*/  
-  //patternCount++;
 }
 
 // this function compares the user array to the computer array for mistakes
@@ -376,52 +327,11 @@ function checkUserAccuracy()
     {
       console.log("LOSE!");
       // need to stop game here with function
+      // deduct patternCount x 1
     }
   }
   console.log("Preparing to make next CPU play");
-  //patternCount++;
   playPattern();
-  /*setTimeout(function() {
-    playPattern();
-  },1500);*/
   
 }
 
-function computerPress(type)
-{
-  console.log("type.id " + type.id);
-  var audioLocation = "audio/" + type.id + ".mp3";
-  var audio = new Audio(audioLocation);
-  audio.play();
-
-  // toggles button colors
-  var unpressedColor = type.id
-  console.log("color pressed: " + type.id);
-  type.id = unpressedColor + "-press";
-  type.addEventListener("mouseup", function () {
-    console.log("ASSIGNING unpressedColor this in COMPUTERPRESS->" + unpressedColor);
-    type.id = unpressedColor;
-  });
-  console.log("YO, UNPRESSED COLOR IS: " + unpressedColor);
-  var currentPress = document.getElementById(unpressedColor + "-press");
-  var evt = new MouseEvent("mouseup");
-  setTimeout(function() {
-    //console.log("Attempting to mouseup: " + winningPatternArr[i-1]);
-    //var evt = new MouseEvent("mouseup");
-    currentPress.dispatchEvent(evt); 
-  },1000);
-}
-
-// delays loop execution so button presses by cpu are not
-// machine gun style
-function patternLoop(iter)
-{
-      //console.log("entering for loop!");
-      /*console.log("feedback: " + winningPatternArr[i] + "Press");
-      console.log("patternCount: " + patternCount);
-      console.log("winningPatternArr[" + patternCount + "]->" + winningPatternArr[i]);*/
-
-      var currentPress = document.getElementById(winningPatternArr[iter]);
-      console.log("currentPress " + currentPress.id);
-      buttonsVisualFeedback(currentPress);
-}
