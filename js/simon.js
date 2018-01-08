@@ -314,6 +314,10 @@ function updateScoreDisplay(num)
   // grabs score-count display
   var scoreCountDisplay = document.getElementById("score-count"); 
   var scoreToDisplay = num;
+  if(num == "!")
+  {
+    scoreCountDisplay.innerHTML = "!!";
+  }
 
   if (num == 100)
   {
@@ -332,12 +336,12 @@ function updateScoreDisplay(num)
 
   if (num < 10 && num >= 0)
   {
-      scoreToDisplay = "0" + num; 
-      scoreCountDisplay.innerHTML = scoreToDisplay;
+    scoreToDisplay = "0" + num; 
+    scoreCountDisplay.innerHTML = scoreToDisplay;
   }
   else if (num <= 20 && num >= 10) 
   {
-      scoreCountDisplay.innerHTML = scoreToDisplay;
+    scoreCountDisplay.innerHTML = scoreToDisplay;
   }
 
 }
@@ -498,6 +502,10 @@ function checkUserEntry(count, color)
     }
   }
   updateScoreDisplay(userPatternArr.length); 
+  if (userPatternArr.length == 20)
+  {
+    triggerWin();
+  }
 }
 
 // this should reset all globals to default and arrays to default
@@ -508,4 +516,16 @@ function resetAll()
   userPatternArr = [];
   userCount = 0;
   updateScoreDisplay(0); 
+  var simon  = document.getElementById("tspan49");
+  simon.innerHTML = "Simon";
+}
+
+// this triggers the win condition
+function triggerWin()
+{
+  console.log("inside triggerWin");
+  var youWin = document.getElementById("tspan49");
+  youWin.innerHTML = "WIN!!";
+  resetAll();
+  updateScoreDisplay("!");
 }
