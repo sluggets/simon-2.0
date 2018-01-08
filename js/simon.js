@@ -396,7 +396,7 @@ function playPattern()
       console.log("Incrementing counter NOW");
       counter++;
       next();
-    }, 1500);
+    }, 1250);
   })();
       
 }
