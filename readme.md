@@ -5,7 +5,7 @@ This is an interactive representation of the Simon electronic memory game.
 ## Getting started
 
 It runs in the browser, just open index.html with your favorite browser or
-go to http://simon.timlongoria.com(not live yet) to try it out!
+go to http://simon.timlongoria.com (not live yet) to try it out!
 
 ### Instructions
 
