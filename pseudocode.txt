@@ -75,3 +75,7 @@ also, feedback will be double X's (XX) in score count and Simon
 logo will change to "oops!"
 
 may need to implement checkUserAccuracy after EVERY click?!?
+
+need to implement victory condition
+
+need to refactor repetitive code in colorPress blocks
