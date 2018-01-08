@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", function() {
   // userPatternArr. This gets reset in checkUserAccuracy
   userCount = 0;
 
+  // global that locks out user from pressing buttons when
+  // cpu is playing its turn
+  blocked = true;
+
   // global holds winning pattern 
   winningPatternArr = [];
 
@@ -34,11 +38,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
+    if (blocked)
+    {
+      return;
+    }
     console.log("user enters blue");
     if (userPatternArr.length == userCount)
     {
-    console.log("userPatternArr.length->" + userPatternArr.length);
-    console.log("patternCount->" + patternCount);
+      console.log("userPatternArr.length->" + userPatternArr.length);
+      console.log("patternCount->" + patternCount);
       console.log("pushing Blue to userPatternArr")
       userPatternArr.push(bluePress.id);
     }
@@ -46,18 +54,25 @@ document.addEventListener("DOMContentLoaded", function() {
     userCount++;
     console.log("userPatternArr.length->" + userPatternArr.length);
     console.log("patternCount->" + patternCount);
-    if (userCount == patternCount)
+    checkUserAccuracy();
+    console.log("Preparing to make next CPU play");
+    playPattern();
+    /*if (userCount == patternCount)
     {
       checkUserAccuracy();
-    }
+    }*/
   });
 
   greenPress.addEventListener("mousedown", function () {
+    if (blocked)
+    {
+      return;
+    }
     console.log("user enters green");
     if (userPatternArr.length == userCount)
     {
-    console.log("userPatternArr.length->" + userPatternArr.length);
-    console.log("patternCount->" + patternCount);
+      console.log("userPatternArr.length->" + userPatternArr.length);
+      console.log("patternCount->" + patternCount);
       console.log("pushing green to userPatternArr")
       userPatternArr.push(greenPress.id);
     }
@@ -65,18 +80,25 @@ document.addEventListener("DOMContentLoaded", function() {
     userCount++;
     console.log("userPatternArr.length->" + userPatternArr.length);
     console.log("patternCount->" + patternCount);
-    if (userCount == patternCount)
+    checkUserAccuracy();
+    console.log("Preparing to make next CPU play");
+    playPattern();
+    /*if (userCount == patternCount)
     {
       checkUserAccuracy();
-    }
+    }*/
   });
 
   yellowPress.addEventListener("mousedown", function () {
+    if (blocked)
+    {
+      return;
+    }
     console.log("user enters yellow");
     if (userPatternArr.length == userCount)
     {
-    console.log("userPatternArr.length->" + userPatternArr.length);
-    console.log("patternCount->" + patternCount);
+      console.log("userPatternArr.length->" + userPatternArr.length);
+      console.log("patternCount->" + patternCount);
       console.log("pushing yellow to userPatternArr")
       userPatternArr.push(yellowPress.id);
     }
@@ -84,18 +106,25 @@ document.addEventListener("DOMContentLoaded", function() {
     userCount++;
     console.log("userPatternArr.length->" + userPatternArr.length);
     console.log("patternCount->" + patternCount);
-    if (userCount == patternCount)
+    checkUserAccuracy();
+    console.log("Preparing to make next CPU play");
+    playPattern();
+    /*if (userCount == patternCount)
     {
       checkUserAccuracy();
-    }
+    }*/
   });
 
   redPress.addEventListener("mousedown", function () {
+    if (blocked)
+    {
+      return;
+    }
     console.log("user enters red");
     if (userPatternArr.length == userCount)
     {
-    console.log("userPatternArr.length->" + userPatternArr.length);
-    console.log("patternCount->" + patternCount);
+      console.log("userPatternArr.length->" + userPatternArr.length);
+      console.log("patternCount->" + patternCount);
       console.log("pushing red to userPatternArr")
       userPatternArr.push(redPress.id);
     }
@@ -103,10 +132,13 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("userPatternArr.length->" + userPatternArr.length);
     console.log("patternCount->" + patternCount);
     userCount++;
-    if (userCount == patternCount)
+    checkUserAccuracy();
+    console.log("Preparing to make next CPU play");
+    playPattern();
+    /*if (userCount == patternCount)
     {
       checkUserAccuracy();
-    }
+    }*/
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -249,6 +281,10 @@ function updateScoreDisplay(num)
   {
     scoreCountDisplay.innerHTML = "";  
   }
+  else if (num == 100)
+  {
+    scoreCountDisplay.innerHTML = "--"; 
+  }
   else
   {
     if (num < 10)
@@ -289,6 +325,7 @@ function startGame()
 // number of correct plays
 function playPattern()
 {
+  blocked = true;
   /* this bit of code below borrowed in principle from: http://patrickmuff.ch/blog/2014/03/12/for-loop-with-delay-in-javascript/*/
 
   var counter = 0;
@@ -296,6 +333,7 @@ function playPattern()
     if (counter > patternCount)
     {
       patternCount++;
+      blocked = false;
       return;
     } 
     setTimeout(function() {
@@ -308,7 +346,7 @@ function playPattern()
       console.log("Incrementing counter NOW");
       counter++;
       next();
-    }, 2000);
+    }, 1500);
   })();
       
 }
@@ -326,12 +364,44 @@ function checkUserAccuracy()
     if (userPatternArr[i] != winningPatternArr[i])
     {
       console.log("LOSE!");
+      if (!strictMode)
+      {
+        nonStrictLoss(); 
+      }
+      else
+      {
+        strictLoss();
+      }
       // need to stop game here with function
-      // deduct patternCount x 1
     }
   }
-  console.log("Preparing to make next CPU play");
-  playPattern();
+  updateScoreDisplay(userPatternArr.length); 
+  /*console.log("Preparing to make next CPU play");
+  playPattern();*/
   
 }
 
+function nonStrictLoss()
+{
+  /*When lose condition is met, need to slice off incorrect play from
+  userPatternArr, and restart computer pattern play
+  also, feedback will be double X's (XX) in score count and Simon 
+  logo will change to "oops!"*/
+  // deduct patternCount x 1
+  userPatternArr.pop();
+  updateScoreDisplay(100);  
+  var titleOops = document.getElementById("tspan49"); 
+  titleOops.innerHTML = "oops!";
+  setTimeout(function() {
+    titleOops.innerHTML = "Simon";
+    updateScoreDisplay(100);  
+    //updateScoreDisplay(userPatternArr.length);
+  },2000);
+  patternCount--;
+  //playPattern();
+}
+
+function strictLoss()
+{
+  alert("Strict Loss!");
+}
