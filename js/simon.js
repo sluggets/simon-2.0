@@ -447,6 +447,8 @@ function nonStrictLoss()
   console.log("inside nonStrict userCount: " + userCount);
   var titleOops = document.getElementById("tspan49"); 
   updateScoreDisplay(100);  
+  var audio = new Audio("/audio/error.mp3");
+  audio.play();
   titleOops.innerHTML = "oops!";
   setTimeout(function() {
     updateScoreDisplay(100);  
@@ -465,6 +467,8 @@ function strictLoss()
   var titleOops = document.getElementById("tspan49"); 
   updateScoreDisplay(0);  
   titleOops.innerHTML = "FAIL!";
+  var audio = new Audio("/audio/error.mp3");
+  audio.play();
   setTimeout(function() {
     updateScoreDisplay(100);  
     titleOops.innerHTML = "Simon";
