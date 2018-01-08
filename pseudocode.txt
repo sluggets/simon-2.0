@@ -74,3 +74,4 @@ userPatternArr, and restart computer pattern play
 also, feedback will be double X's (XX) in score count and Simon 
 logo will change to "oops!"
 
+may need to implement checkUserAccuracy after EVERY click?!?
