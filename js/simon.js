@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // global that locks out user from pressing buttons when
   // cpu is playing its turn
-  blocked = true;
+  blocked = false;
 
   // global holds winning pattern 
   winningPatternArr = [];
@@ -166,22 +166,32 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   startPress.addEventListener("mousedown", function () {
-    if (!onFlag)
+    if (!onFlag || blocked)
     {
       return;
     }
     buttonsVisualFeedback(startPress);
+    //patternCount = 1;
+    //winningPatternArr = [];
+    //userPatternArr = [];
+    //userCount = 0;
+    //updateScoreDisplay(0); 
+    resetAll();
     winningPatternArr = startGame();    
     playPattern();
   });
   
   strictPress.addEventListener("mousedown", function () {
-    if (!onFlag)
+    if (!onFlag || blocked)
     {
       return;
     }
     buttonsVisualFeedback(strictPress);
-    if (winningPatternArr.length != 0)
+    resetAll();
+    strictToggle();
+    winningPatternArr = startGame();    
+    //playPattern();
+    /*if (winningPatternArr.length != 0)
     {
       strictToggle()
       startGame();
@@ -189,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
     else
     {
       strictToggle();
-    }
+    }*/
   });
 
   onButton.addEventListener("mousedown", function () {
@@ -262,6 +272,7 @@ function strictToggle()
     strictIndicator.id = "strict-mode-indicator-true";
   }
   strictMode = !strictMode;    
+  console.log("strictMode is set TO: " + strictMode);
 }
 
 // this toggles indicator color for on/off buttons
@@ -277,11 +288,14 @@ function onOffToggle(on, off)
     if (strictMode)
     {
       strictToggle();
-      strictMode = false;
+      //strictMode = false;
     }
     updateScoreDisplay(-1);
     patternCount = 1;
     winningPatternArr = [];
+    userPatternArr = [];
+    userCount = 0;
+    blocked = false;
   }
   else
   {
@@ -365,7 +379,7 @@ function playPattern()
 
   var counter = 0;
   (function next() {
-    if (counter == patternCount && patternCount != 0)
+    if ((counter == patternCount && patternCount != 0) || !onFlag)
     {
       console.log("counterTIM: " + counter + " patternCount: " + patternCount);
       //patternCount++;
@@ -448,7 +462,16 @@ function nonStrictLoss()
 
 function strictLoss()
 {
-  alert("Strict Loss!");
+  var titleOops = document.getElementById("tspan49"); 
+  updateScoreDisplay(0);  
+  titleOops.innerHTML = "FAIL!";
+  setTimeout(function() {
+    updateScoreDisplay(100);  
+    titleOops.innerHTML = "Simon";
+  },2000);
+  resetAll();
+  winningPatternArr = startGame();
+  //alert("Strict Loss!");
 }
 
 // checks for incorrect plays after each user entry
@@ -471,4 +494,14 @@ function checkUserEntry(count, color)
     }
   }
   updateScoreDisplay(userPatternArr.length); 
+}
+
+// this should reset all globals to default and arrays to default
+function resetAll()
+{
+  patternCount = 1;
+  winningPatternArr = [];
+  userPatternArr = [];
+  userCount = 0;
+  updateScoreDisplay(0); 
 }
