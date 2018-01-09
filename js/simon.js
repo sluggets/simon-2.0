@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       userPatternArr.push(bluePress.id);
     }
-    buttonsVisualFeedback(bluePress);
+    buttonsFeedback(bluePress);
     checkUserEntry(userCount, bluePress.id); 
     userCount++;
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
       userPatternArr.push(greenPress.id);
     }
 
-    buttonsVisualFeedback(greenPress);
+    buttonsFeedback(greenPress);
     checkUserEntry(userCount, greenPress.id); 
     userCount++;
 
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
       userPatternArr.push(yellowPress.id);
     }
 
-    buttonsVisualFeedback(yellowPress);
+    buttonsFeedback(yellowPress);
     checkUserEntry(userCount, yellowPress.id); 
     userCount++;
 
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       userPatternArr.push(redPress.id);
     }
-    buttonsVisualFeedback(redPress);
+    buttonsFeedback(redPress);
     checkUserEntry(userCount, redPress.id); 
     userCount++;
 
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
 
-    buttonsVisualFeedback(startPress);
+    buttonsFeedback(startPress);
     resetAll();
     winningPatternArr = startGame();    
     playPattern();
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       return;
     }
-    buttonsVisualFeedback(strictPress);
+    buttonsFeedback(strictPress);
     resetAll();
     strictToggle();
     winningPatternArr = startGame();    
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // triggers color flash to indicate button has been pressed
-function buttonsVisualFeedback(type)
+function buttonsFeedback(type)
 {
   // plays button sounds only for main four color buttons
   if (type.id != "start-game-button" && type.id != "strict-mode-button")
@@ -321,7 +321,7 @@ function playPattern()
     } 
     setTimeout(function() {
       var currentPress = document.getElementById(winningPatternArr[counter]);
-      buttonsVisualFeedback(currentPress);
+      buttonsFeedback(currentPress);
       counter++;
       next();
     }, 1250);
