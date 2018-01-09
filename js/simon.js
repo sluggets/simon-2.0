@@ -5,9 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // global that indicates game's strict mode status
   strictMode = false;
 
-  // MAY NOT NEED THIS!!! global holds score
-  //scoreCount = 0;
-
   // global holds count to track how far along we are in the pattern
   patternCount = 1;
 
@@ -42,30 +39,19 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       return;
     }
-    console.log("user enters blue");
-    console.log("BEFORE Push")
-    console.log("BEFORE PUSH-userPatternArr.length->" + userPatternArr.length);
-    console.log("BEFORE PUSH-userCount->" + userCount);
+
     if (userPatternArr.length == userCount)
     {
-      console.log("userPatternArr.length->" + userPatternArr.length);
-      console.log("patternCount->" + patternCount);
-      console.log("pushing Blue to userPatternArr")
       userPatternArr.push(bluePress.id);
-      //userCount = 0;
     }
     buttonsVisualFeedback(bluePress);
     checkUserEntry(userCount, bluePress.id); 
     userCount++;
-    console.log("userPatternArr.length->" + userPatternArr.length);
-    console.log("patternCount->" + patternCount);
-    //checkUserAccuracy();
-    console.log("Preparing to make next CPU play");
+
     if (userPatternArr.length == patternCount)
     {
       playPattern();
       patternCount++;
-      //checkUserAccuracy();
     }
   });
 
@@ -74,30 +60,20 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       return;
     }
-    console.log("user enters green");
-    console.log("BEFORE Push")
-    console.log("BEFORE PUSH-userPatternArr.length->" + userPatternArr.length);
-    console.log("BEFORE PUSH-userCount->" + userCount);
+
     if (userPatternArr.length == userCount)
     {
-      console.log("userPatternArr.length->" + userPatternArr.length);
-      console.log("patternCount->" + patternCount);
-      console.log("pushing green to userPatternArr")
       userPatternArr.push(greenPress.id);
-      //userCount = 0;
     }
+
     buttonsVisualFeedback(greenPress);
     checkUserEntry(userCount, greenPress.id); 
     userCount++;
-    console.log("userPatternArr.length->" + userPatternArr.length);
-    console.log("patternCount->" + patternCount);
-    //checkUserAccuracy();
-    console.log("Preparing to make next CPU play");
+
     if (userPatternArr.length == patternCount)
     {
       playPattern();
       patternCount++;
-      //checkUserAccuracy();
     }
   });
 
@@ -106,30 +82,20 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       return;
     }
-    console.log("user enters yellow");
-    console.log("BEFORE Push")
-    console.log("BEFORE PUSH-userPatternArr.length->" + userPatternArr.length);
-    console.log("BEFORE PUSH-userCount->" + userCount);
+
     if (userPatternArr.length == userCount)
     {
-      console.log("userPatternArr.length->" + userPatternArr.length);
-      console.log("patternCount->" + patternCount);
-      console.log("pushing yellow to userPatternArr")
       userPatternArr.push(yellowPress.id);
-      //userCount = 0;
     }
+
     buttonsVisualFeedback(yellowPress);
     checkUserEntry(userCount, yellowPress.id); 
     userCount++;
-    console.log("userPatternArr.length->" + userPatternArr.length);
-    console.log("patternCount->" + patternCount);
-    //checkUserAccuracy();
-    console.log("Preparing to make next CPU play");
+
     if (userPatternArr.length == patternCount)
     {
       playPattern();
       patternCount++;
-      //checkUserAccuracy();
     }
   });
 
@@ -138,29 +104,18 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       return;
     }
-    console.log("user enters red");
-    console.log("BEFORE Push")
-    console.log("BEFORE PUSH-userPatternArr.length->" + userPatternArr.length);
-    console.log("BEFORE PUSH-userCount->" + userCount);
+
     if (userPatternArr.length == userCount)
     {
-      console.log("userPatternArr.length->" + userPatternArr.length);
-      console.log("patternCount->" + patternCount);
-      console.log("pushing red to userPatternArr")
       userPatternArr.push(redPress.id);
-      //userCount = 0;
     }
     buttonsVisualFeedback(redPress);
     checkUserEntry(userCount, redPress.id); 
-    console.log("userPatternArr.length->" + userPatternArr.length);
-    console.log("patternCount->" + patternCount);
     userCount++;
-    //checkUserAccuracy();
-    console.log("Preparing to make next CPU play");
+
     if (userPatternArr.length == patternCount)
     {
       playPattern();
-      patternCount++;
       //checkUserAccuracy();
     }
   });
@@ -170,12 +125,8 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       return;
     }
+
     buttonsVisualFeedback(startPress);
-    //patternCount = 1;
-    //winningPatternArr = [];
-    //userPatternArr = [];
-    //userCount = 0;
-    //updateScoreDisplay(0); 
     resetAll();
     winningPatternArr = startGame();    
     playPattern();
@@ -190,16 +141,6 @@ document.addEventListener("DOMContentLoaded", function() {
     resetAll();
     strictToggle();
     winningPatternArr = startGame();    
-    //playPattern();
-    /*if (winningPatternArr.length != 0)
-    {
-      strictToggle()
-      startGame();
-    }
-    else
-    {
-      strictToggle();
-    }*/
   });
 
   onButton.addEventListener("mousedown", function () {
@@ -220,8 +161,6 @@ document.addEventListener("DOMContentLoaded", function() {
     onOffToggle(onButton, offButton);
   });
 });
-
-// Add function definitions below here
 
 // triggers color flash to indicate button has been pressed
 function buttonsVisualFeedback(type)
@@ -272,7 +211,6 @@ function strictToggle()
     strictIndicator.id = "strict-mode-indicator-true";
   }
   strictMode = !strictMode;    
-  console.log("strictMode is set TO: " + strictMode);
 }
 
 // this toggles indicator color for on/off buttons
@@ -283,12 +221,11 @@ function onOffToggle(on, off)
   {
     off.style.fill = "#404040";  
     on.style.fill = "#808080";
-    //THIS VAR MAY NOT BE NEEDED scoreCount = 0;
     onFlag = !onFlag;
+
     if (strictMode)
     {
       strictToggle();
-      //strictMode = false;
     }
     updateScoreDisplay(-1);
     patternCount = 1;
@@ -304,7 +241,6 @@ function onOffToggle(on, off)
     updateScoreDisplay(0);
     onFlag = !onFlag;  
   }
-  console.log("strict status is: " + strictMode);
 
 }
 
@@ -314,6 +250,7 @@ function updateScoreDisplay(num)
   // grabs score-count display
   var scoreCountDisplay = document.getElementById("score-count"); 
   var scoreToDisplay = num;
+
   if(num == "!")
   {
     scoreCountDisplay.innerHTML = "!!";
@@ -323,9 +260,6 @@ function updateScoreDisplay(num)
   {
     setTimeout(function() {
       scoreCountDisplay.innerHTML = "--"; 
-      //updateScoreDisplay(100);  
-      //titleOops.innerHTML = "Simon";
-      //updateScoreDisplay(userPatternArr.length);
     },100);
   }
 
@@ -357,7 +291,6 @@ function randomPatternSelector()
     pattArr.push(buttonMap[(Math.floor(Math.random() * 4))]);
   }
 
-  console.log("pattArr: " + pattArr);
   return pattArr;
 }
 
@@ -366,7 +299,6 @@ function randomPatternSelector()
 // the game
 function startGame()
 {
-  //THIS VAR MAY NOT BE NEEDED scoreCount = 0;
   patternCount = 1;
   return randomPatternSelector();
 }
@@ -376,7 +308,6 @@ function startGame()
 // number of correct plays
 function playPattern()
 {
-  console.log("Inside playPatter()");
   userCount = 0;
   blocked = true;
   /* this bit of code below borrowed in principle from: http://patrickmuff.ch/blog/2014/03/12/for-loop-with-delay-in-javascript/*/
@@ -385,19 +316,12 @@ function playPattern()
   (function next() {
     if ((counter == patternCount && patternCount != 0) || !onFlag)
     {
-      console.log("counterTIM: " + counter + " patternCount: " + patternCount);
-      //patternCount++;
       blocked = false;
       return;
     } 
     setTimeout(function() {
       var currentPress = document.getElementById(winningPatternArr[counter]);
-      console.log("Going into press button for CPU");
-      console.log("Counter is..." + counter);
-      console.log("patternCount is..." + patternCount);
-      console.log("Going into press button for CPU");
       buttonsVisualFeedback(currentPress);
-      console.log("Incrementing counter NOW");
       counter++;
       next();
     }, 1250);
@@ -405,50 +329,14 @@ function playPattern()
       
 }
 
-// this function compares the user array to the computer array for mistakes
-/*function checkUserAccuracy()
-{
-  //userCount = 0;
-  console.log("userPatternArr: " + userPatternArr);
-  console.log("winningPatternArr: " + winningPatternArr);
-  for (var i = 0; i < userPatternArr.length; i++)
-  {
-    console.log("userPatternArr[" + i + "]->" + userPatternArr[i]);
-    console.log("winningPatternArr[" + i + "]->" + winningPatternArr[i]);
-    if (userPatternArr[i] != winningPatternArr[i])
-    {
-      console.log("LOSE!");
-      if (!strictMode)
-      {
-        nonStrictLoss(); 
-      }
-      else
-      {
-        strictLoss();
-      }
-      // need to stop game here with function
-    }
-  }
-  updateScoreDisplay(userPatternArr.length); 
-}*/
-
+// handles loss if strict mode is not on
 function nonStrictLoss()
 {
-  /*When lose condition is met, need to slice off incorrect play from
-  userPatternArr, and restart computer pattern play
-  also, feedback will be double X's (XX) in score count and Simon 
-  logo will change to "oops!"*/
-  // deduct patternCount x 1
   
   if (userCount + 1 == patternCount)
   {
-    console.log("popping userPatternArr");
     userPatternArr.pop();
-    //if (patter
   }
-  console.log("inside nonStrict patternCount" + patternCount);
-  console.log("inside nonStrict userPatternArr.length: " + userPatternArr.length);
-  console.log("inside nonStrict userCount: " + userCount);
   var titleOops = document.getElementById("tspan49"); 
   updateScoreDisplay(100);  
   var audio = new Audio("/audio/error.mp3");
@@ -457,15 +345,11 @@ function nonStrictLoss()
   setTimeout(function() {
     updateScoreDisplay(100);  
     titleOops.innerHTML = "Simon";
-    //updateScoreDisplay(userPatternArr.length);
   },2000);
-  console.log("patternCOUNT before: " + patternCount);
-  console.log("decrementing patterCount");
-  console.log("patternCOUNT after: " + patternCount);
   patternCount--;
-  //playPattern();
 }
 
+// handles loss if strict mode IS enabled
 function strictLoss()
 {
   var titleOops = document.getElementById("tspan49"); 
@@ -479,19 +363,13 @@ function strictLoss()
   },2000);
   resetAll();
   winningPatternArr = startGame();
-  //alert("Strict Loss!");
 }
 
 // checks for incorrect plays after each user entry
 function checkUserEntry(count, color)
 {
-  console.log("count: " + count);
-  console.log("color: " + color);
-  console.log("Inside checkUserEntry");
-  console.log("winningPatternArr[" + count + "]:" + winningPatternArr[count]);
   if (winningPatternArr[count] != color)
   {
-    console.log("LOSE!");
     if (!strictMode)
     {
       nonStrictLoss(); 
@@ -523,7 +401,6 @@ function resetAll()
 // this triggers the win condition
 function triggerWin()
 {
-  console.log("inside triggerWin");
   var youWin = document.getElementById("tspan49");
   youWin.innerHTML = "WIN!!";
   resetAll();
