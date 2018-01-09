@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // global that indicates game's strict mode status
   strictMode = false;
 
+  // global marks if user failed in strict mode
+  strictFail = false;
+
   // global holds count to track how far along we are in the pattern
   patternCount = 1;
 
@@ -35,89 +38,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
-    if (blocked)
-    {
-      return;
-    }
-
-    if (userPatternArr.length == userCount)
-    {
-      userPatternArr.push(bluePress.id);
-    }
-    buttonsFeedback(bluePress);
-    checkUserEntry(userCount, bluePress.id); 
-    userCount++;
-
-    if (userPatternArr.length == patternCount)
-    {
-      playPattern();
-      patternCount++;
-    }
+    userButtonPress(bluePress);
   });
 
   greenPress.addEventListener("mousedown", function () {
-    if (blocked)
-    {
-      return;
-    }
-
-    if (userPatternArr.length == userCount)
-    {
-      userPatternArr.push(greenPress.id);
-    }
-
-    buttonsFeedback(greenPress);
-    checkUserEntry(userCount, greenPress.id); 
-    userCount++;
-
-    if (userPatternArr.length == patternCount)
-    {
-      playPattern();
-      patternCount++;
-    }
+    userButtonPress(greenPress);
   });
 
   yellowPress.addEventListener("mousedown", function () {
-    if (blocked)
-    {
-      return;
-    }
-
-    if (userPatternArr.length == userCount)
-    {
-      userPatternArr.push(yellowPress.id);
-    }
-
-    buttonsFeedback(yellowPress);
-    checkUserEntry(userCount, yellowPress.id); 
-    userCount++;
-
-    if (userPatternArr.length == patternCount)
-    {
-      playPattern();
-      patternCount++;
-    }
+    userButtonPress(yellowPress);
   });
 
   redPress.addEventListener("mousedown", function () {
-    if (blocked)
-    {
-      return;
-    }
-
-    if (userPatternArr.length == userCount)
-    {
-      userPatternArr.push(redPress.id);
-    }
-    buttonsFeedback(redPress);
-    checkUserEntry(userCount, redPress.id); 
-    userCount++;
-
-    if (userPatternArr.length == patternCount)
-    {
-      playPattern();
-      //checkUserAccuracy();
-    }
+    userButtonPress(redPress);
   });
 
   startPress.addEventListener("mousedown", function () {
@@ -165,6 +98,10 @@ document.addEventListener("DOMContentLoaded", function() {
 // triggers color flash to indicate button has been pressed
 function buttonsFeedback(type)
 {
+  if (!onFlag)
+  {
+    return;
+  }
   // plays button sounds only for main four color buttons
   if (type.id != "start-game-button" && type.id != "strict-mode-button")
   {
@@ -233,6 +170,7 @@ function onOffToggle(on, off)
     userPatternArr = [];
     userCount = 0;
     blocked = false;
+    strictFail = false;
   }
   else
   {
@@ -308,6 +246,10 @@ function startGame()
 // number of correct plays
 function playPattern()
 {
+  if (strictFail || !onFlag)
+  {
+    return;
+  }
   userCount = 0;
   blocked = true;
   /* this bit of code below borrowed in principle from: http://patrickmuff.ch/blog/2014/03/12/for-loop-with-delay-in-javascript/*/
@@ -352,17 +294,15 @@ function nonStrictLoss()
 // handles loss if strict mode IS enabled
 function strictLoss()
 {
+  strictFail = true;
+  console.log("inside strict loss");
   var titleOops = document.getElementById("tspan49"); 
-  updateScoreDisplay(0);  
   titleOops.innerHTML = "FAIL!";
   var audio = new Audio("/audio/error.mp3");
   audio.play();
   setTimeout(function() {
-    updateScoreDisplay(100);  
-    titleOops.innerHTML = "Simon";
-  },2000);
-  resetAll();
-  winningPatternArr = startGame();
+    updateScoreDisplay(0);  
+  },1000);
 }
 
 // checks for incorrect plays after each user entry
@@ -389,6 +329,7 @@ function checkUserEntry(count, color)
 // this should reset all globals to default and arrays to default
 function resetAll()
 {
+  strictFail = false;
   patternCount = 1;
   winningPatternArr = [];
   userPatternArr = [];
@@ -405,4 +346,28 @@ function triggerWin()
   youWin.innerHTML = "WIN!!";
   resetAll();
   updateScoreDisplay("!");
+}
+
+// this handles the user button presses
+function userButtonPress(buttonType)
+{
+  if (blocked)
+  {
+    return;
+  }
+
+  if (userPatternArr.length == userCount)
+  {
+    userPatternArr.push(buttonType.id);
+  }
+  buttonsFeedback(buttonType);
+  checkUserEntry(userCount, buttonType.id); 
+  userCount++;
+
+  if (userPatternArr.length == patternCount)
+  {
+    playPattern();
+    patternCount++;
+  }
+
 }
