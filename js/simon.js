@@ -295,7 +295,6 @@ function nonStrictLoss()
 function strictLoss()
 {
   strictFail = true;
-  console.log("inside strict loss");
   var titleOops = document.getElementById("tspan49"); 
   titleOops.innerHTML = "FAIL!";
   var audio = new Audio("/audio/error.mp3");
