@@ -350,7 +350,7 @@ function triggerWin()
 // this handles the user button presses
 function userButtonPress(buttonType)
 {
-  if (blocked)
+  if (blocked || !onFlag)
   {
     return;
   }
