@@ -79,3 +79,5 @@ may need to implement checkUserAccuracy after EVERY click?!?
 need to implement victory condition
 
 need to refactor repetitive code in colorPress blocks
+
+check to see if onOffToggle function needs arguments?!
