@@ -8,6 +8,13 @@ tspan
   font-family: 'Rubik', sans-serif;
 }
 
+h1
+{
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  color: #404040;
+}
+
 .buttons
 {
   stroke: #787878;
