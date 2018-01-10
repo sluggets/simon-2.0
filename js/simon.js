@@ -41,7 +41,19 @@ document.addEventListener("DOMContentLoaded", function() {
     userButtonPress(bluePress);
   });
 
+  bluePress.addEventListener("touchstart", function () {
+    buttonsTouchColor(bluePress);
+    bluePress.preventDefault();
+    userButtonPress(bluePress);
+  });
+
   greenPress.addEventListener("mousedown", function () {
+    userButtonPress(greenPress);
+  });
+
+  greenPress.addEventListener("touchstart", function () {
+    buttonsTouchColor(greenPress);
+    greenPress.preventDefault();
     userButtonPress(greenPress);
   });
 
@@ -49,7 +61,19 @@ document.addEventListener("DOMContentLoaded", function() {
     userButtonPress(yellowPress);
   });
 
+  yellowPress.addEventListener("touchstart", function () {
+    buttonsTouchColor(yellowPress);
+    yellowPress.preventDefault();
+    userButtonPress(yellowPress);
+  });
+
   redPress.addEventListener("mousedown", function () {
+    userButtonPress(redPress);
+  });
+
+  redPress.addEventListener("touchstart", function () {
+    buttonsTouchColor(redPress);
+    redPress.preventDefault();
     userButtonPress(redPress);
   });
 
@@ -119,6 +143,10 @@ function buttonsFeedback(type)
   type.addEventListener("mouseup", function () {
     currentButton.style.fill = unpressedStyle; 
   });
+  type.addEventListener("touchend", function () {
+    currentButton.style.fill = unpressedStyle; 
+  });
+
   setTimeout(function() {
     var evt = new MouseEvent("mouseup");
     currentButton.dispatchEvent(evt); 
@@ -369,4 +397,20 @@ function userButtonPress(buttonType)
     patternCount++;
   }
 
+}
+
+// handles lighting up buttons when touch event is
+// used, for some reason, touch event messes up when
+// buttonsFeedback is used
+function buttonsTouchColor(type)
+{
+  // toggles button colors
+  var currentButton = document.getElementById(type.id);
+  var style = window.getComputedStyle(currentButton);
+  var unpressedStyle = style.fill;
+  var pressedStyle = unpressedStyle.slice(0, -4);
+  currentButton.style.fill = pressedStyle + "1.0)";
+  type.addEventListener("touchend", function () {
+    currentButton.style.fill = unpressedStyle; 
+  });
 }
