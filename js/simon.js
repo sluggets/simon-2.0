@@ -114,7 +114,7 @@ function buttonsFeedback(type)
   toggleColor(type);
   setTimeout(function() {
     toggleColor(type);
-  },500);
+  },350);
   
 }
 
