@@ -106,24 +106,16 @@ function buttonsFeedback(type)
   if (type.id != "start-game-button" && type.id != "strict-mode-button")
   {
     var audioLocation = "audio/" + type.id + ".mp3";
+    var audio = new Audio(audioLocation);
+    audio.play();
   }
-  var audio = new Audio(audioLocation);
-  audio.play();
 
   // toggles button colors
-  var currentButton = document.getElementById(type.id);
-  var style = window.getComputedStyle(currentButton);
-  var unpressedStyle = style.fill;
-  var pressedStyle = unpressedStyle.slice(0, -4);
-  currentButton.style.fill = pressedStyle + "1.0)";
-  type.addEventListener("mouseup", function () {
-    currentButton.style.fill = unpressedStyle; 
-  });
-
+  toggleColor(type);
   setTimeout(function() {
-    var evt = new MouseEvent("mouseup");
-    currentButton.dispatchEvent(evt); 
-  },1000);
+    toggleColor(type);
+  },500);
+  
 }
 
 // this toggles strict mode and appropriate indicator light
@@ -370,5 +362,28 @@ function userButtonPress(buttonType)
     patternCount++;
   }
 
+}
+
+function toggleColor(type)
+{
+  var currentButton = document.getElementById(type.id);
+  var style = window.getComputedStyle(currentButton);
+  var currentFill = style.fill;
+  var opacitySlice = currentFill.slice(-4);
+  var rgbSlice = currentFill.slice(0, -4);
+  var newStyle;
+  var rgbCheck = currentFill.slice(0,4);
+  if (opacitySlice == "0.3)")
+  {
+    newStyle = rgbSlice + "1.0)";
+  }
+  else if (rgbCheck[3] != 'a')
+  {
+    var rgbaPrefix = "rgba";
+    var newAlpha = currentFill.slice(3, -1);
+    newStyle =  rgbaPrefix + newAlpha + ",0.3)";
+  }
+
+  currentButton.style.fill = newStyle;
 }
 
