@@ -58,22 +58,12 @@ h1
 
 #start-game-button
 {
-  fill: rgba(204, 0, 0, 0.6);
-}
-
-#start-game-button-press
-{
-  fill: rgba(204, 0, 0, 1.0);
+  fill: rgba(204, 0, 0, 0.3);
 }
 
 #strict-mode-button
 {
-  fill: rgba(204, 0, 0, 0.6);
-}
-
-#strict-mode-button-press
-{
-  fill: rgba(204, 0, 0, 1.0);
+  fill: rgba(204, 0, 0, 0.3);
 }
 
 #game-on-button
