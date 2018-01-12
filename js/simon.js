@@ -387,3 +387,42 @@ function toggleColor(type)
   currentButton.style.fill = newStyle;
 }
 
+function toggleColor(type)
+{
+  var currentButton = document.getElementById(type.id);
+  var style = window.getComputedStyle(currentButton);
+  var unpressedColor = style.border-bottom.slice(-8);
+  
+}
+#blue
+{
+  border-bottom: 10vw solid #00b0b3;
+  /* pressed color #00f9ff*/
+#green
+{
+  border-bottom: 10vw solid #1fcc00;
+  /* pressed color: #39ff14 */
+#red
+{
+  border-bottom: 10vw solid #ff3399;
+  /* pressed color: #ff69b4 */
+#yellow
+{
+  border-bottom: 10vw solid #b3b300;
+  /* pressed color: #ffff00 */
+
+function colorMapper(color)
+{
+  var newColor;
+  var oldColor = 
+  switch (color)
+  {
+    case "green":
+      newColor = "#39ff14;";
+      break;
+    case "blue":
+      newColor = "#00f9ff;";
+      break;
+  }
+}
+
