@@ -3,6 +3,7 @@ body
   font-size: 16px;
   background-color: #d4f4dd;
   color: #0e7c7b;
+  margin-top: 9em;
 }
 
 .row
@@ -14,71 +15,96 @@ body
 
 .grid-item
 {
-  border-bottom: 200px solid #17bebb;
+  /*border-bottom: 200px solid #17bebb;
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;;
   height: 0;
   width: 200px;
-  /*width: 200px;
-  height: 200px;
-  background-color:#17bebb;  
-  margin: 100px;
-  color: #0e7c7b;
-  margin: 100px;*/
   margin: 90px;
   box-shadow: 0px 14px 2px -6px #0e7c7b;
-  text-shadow: 1px -1px 4px #0e7c7b;
+  text-shadow: 1px -1px 4px #0e7c7b;*/
+  border-left: 5vw solid transparent;
+  border-right: 5vw solid transparent;;
+  height: 0;
+  width: 10vw;
 }
 #blue
 {
-  border-bottom: 200px solid #00b0b3;
+  border-bottom: 10vw solid #00b0b3;
   /* pressed color #00f9ff*/
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;;
-  height: 0;
-  width: 200px;
   transform: rotate(-153.5deg);
   box-shadow: 0px 14px 7px -9px #006466;
+  margin-bottom: 7vw;
 }
 
 #green
 {
-  border-bottom: 200px solid #1fcc00;
+  border-bottom: 10vw solid #1fcc00;
   /* pressed color: #39ff14 */
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;;
-  height: 0;
-  width: 200px;
   transform: rotate(153.5deg);
-  margin-right: -179px;
+  margin-right: 1.5vw;
   box-shadow: 0px 14px 7px -9px #138000;
+  margin-bottom: 7vw;
 }
 
 #red
 {
-  border-bottom: 200px solid #ff3399;
+  border-bottom: 10vw solid #ff3399;
   /* pressed color: #ff69b4 */
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;;
-  height: 0;
-  width: 200px;
   transform: rotate(-26.5deg);
   box-shadow: 0px 14px 7px -9px #e60073;
+  margin-top: 7vw;
 }
 
 #yellow
 {
-  border-bottom: 200px solid #b3b300;
+  border-bottom: 10vw solid #b3b300;
   /* pressed color: #ffff00 */
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;;
-  height: 0;
-  width: 200px;
   transform: rotate(26.5deg);
-  margin-right: -179px;
+  margin-right: 1.5vw;
   box-shadow: 0px 14px 7px -9px #666600;
+  margin-top: 7vw;
 }
 
+@media (max-width: 700px)
+{
+
+  .grid-item
+  {
+    border-left: 10vw solid transparent;
+    border-right: 10vw solid transparent;;
+    height: 0;
+    width: 20vw;
+  }
+
+  #green
+  {
+    border-bottom: 20vw solid #1fcc00;
+    margin-right: -2em;
+    margin-bottom: 9vw;
+  }
+
+  #blue
+  {
+    border-bottom: 20vw solid #00b0b3;
+    margin-bottom: 9vw;
+
+  }
+
+  #yellow
+  {
+    border-bottom: 20vw solid #b3b300;
+    margin-right: -2em;
+    margin-top: 9vw;
+
+  }
+
+  #red
+  {
+    border-bottom: 20vw solid #ff3399;
+    margin-top: 9vw;
+  }
+}
 #score-count
 {
 }
