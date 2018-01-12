@@ -1,9 +1,10 @@
 body
 {
+  font-family: 'Roboto Mono', monospace;
   font-size: 16px;
   background-color: #d4f4dd;
   color: #0e7c7b;
-  margin-top: 9em;
+  margin-top: 8em;
 }
 
 .row
@@ -34,7 +35,7 @@ body
   /* pressed color #00f9ff*/
   transform: rotate(-153.5deg);
   box-shadow: 0px 14px 7px -9px #006466;
-  margin-bottom: 7vw;
+  margin-bottom: 4vw;
 }
 
 #green
@@ -44,7 +45,7 @@ body
   transform: rotate(153.5deg);
   margin-right: 1.5vw;
   box-shadow: 0px 14px 7px -9px #138000;
-  margin-bottom: 7vw;
+  margin-bottom: 4vw;
 }
 
 #red
@@ -53,7 +54,7 @@ body
   /* pressed color: #ff69b4 */
   transform: rotate(-26.5deg);
   box-shadow: 0px 14px 7px -9px #e60073;
-  margin-top: 7vw;
+  margin-top: 4vw;
 }
 
 #yellow
@@ -63,48 +64,9 @@ body
   transform: rotate(26.5deg);
   margin-right: 1.5vw;
   box-shadow: 0px 14px 7px -9px #666600;
-  margin-top: 7vw;
+  margin-top: 4vw;
 }
 
-@media (max-width: 700px)
-{
-
-  .grid-item
-  {
-    border-left: 10vw solid transparent;
-    border-right: 10vw solid transparent;;
-    height: 0;
-    width: 20vw;
-  }
-
-  #green
-  {
-    border-bottom: 20vw solid #1fcc00;
-    margin-right: -2em;
-    margin-bottom: 9vw;
-  }
-
-  #blue
-  {
-    border-bottom: 20vw solid #00b0b3;
-    margin-bottom: 9vw;
-
-  }
-
-  #yellow
-  {
-    border-bottom: 20vw solid #b3b300;
-    margin-right: -2em;
-    margin-top: 9vw;
-
-  }
-
-  #red
-  {
-    border-bottom: 20vw solid #ff3399;
-    margin-top: 9vw;
-  }
-}
 #score-count
 {
 }
@@ -146,4 +108,86 @@ body
 #strict-mode-indicator-true
 {
   fill: red;
+}
+
+#score
+{
+  text-align: center;
+  font-size: 75px;
+}
+
+button
+{
+  height:50px;
+  width: 50px;
+  border-radius: 25px;
+  -moz-box-shadow: inset 0 0 10px #0e7c7b;
+  -webkit-box-shadow: inset 0 0 10px #0e7c7b;
+  box-shadow: inset 0 0 10px #0e7c7b;
+  border: none;
+  outline: none;
+  color: #0e7c7b;
+  background-color: #19e6e2;
+}
+
+button:hover
+{
+  -moz-box-shadow: inset 0 0 20px #0a5c5a;
+  -webkit-box-shadow: inset 0 0 20px #0a5c5a;
+  box-shadow: inset 0 0 20px #0a5c5a;
+  
+}
+
+#controls
+{
+  justify-content: space-evenly;
+}
+
+#on-button
+{
+}
+
+#start, #strict
+{
+  font-size: 10px;
+}
+
+@media (max-width: 700px)
+{
+
+  .grid-item
+  {
+    border-left: 10vw solid transparent;
+    border-right: 10vw solid transparent;;
+    height: 0;
+    width: 20vw;
+  }
+
+  #green
+  {
+    border-bottom: 20vw solid #1fcc00;
+    margin-right: -2em;
+    margin-bottom: 9vw;
+  }
+
+  #blue
+  {
+    border-bottom: 20vw solid #00b0b3;
+    margin-bottom: 9vw;
+
+  }
+
+  #yellow
+  {
+    border-bottom: 20vw solid #b3b300;
+    margin-right: -2em;
+    margin-top: 9vw;
+
+  }
+
+  #red
+  {
+    border-bottom: 20vw solid #ff3399;
+    margin-top: 9vw;
+  }
 }
