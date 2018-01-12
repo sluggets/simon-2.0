@@ -1,56 +1,86 @@
 body
 {
-  background-color: #a6a6a6;
+  font-size: 16px;
+  background-color: #d4f4dd;
+  color: #0e7c7b;
 }
 
-#container
+.row
 {
-  margin: 0 auto;
-  width: 80em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-tspan
+.grid-item
 {
-  font-family: 'Rubik', sans-serif;
+  border-bottom: 200px solid #17bebb;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;;
+  height: 0;
+  width: 200px;
+  /*width: 200px;
+  height: 200px;
+  background-color:#17bebb;  
+  margin: 100px;
+  color: #0e7c7b;
+  margin: 100px;*/
+  margin: 90px;
+  box-shadow: 0px 14px 2px -6px #0e7c7b;
+  text-shadow: 1px -1px 4px #0e7c7b;
 }
-
-h1
-{
-  font-family: 'Rubik', sans-serif;
-  text-align: center;
-  color: #404040;
-}
-
-.buttons
-{
-  stroke: #787878;
-}
-
 #blue
 {
-  fill: rgba(0, 249, 255, 0.3);
+  border-bottom: 200px solid #00b0b3;
+  /* pressed color #00f9ff*/
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;;
+  height: 0;
+  width: 200px;
+  transform: rotate(-153.5deg);
+  box-shadow: 0px 14px 7px -9px #006466;
 }
 
 #green
 {
-  fill: rgba(57, 255, 20, 0.3);
+  border-bottom: 200px solid #1fcc00;
+  /* pressed color: #39ff14 */
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;;
+  height: 0;
+  width: 200px;
+  transform: rotate(153.5deg);
+  margin-right: -179px;
+  box-shadow: 0px 14px 7px -9px #138000;
 }
 
 #red
 {
-  fill: rgba(255, 105, 180, 0.3);
+  border-bottom: 200px solid #ff3399;
+  /* pressed color: #ff69b4 */
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;;
+  height: 0;
+  width: 200px;
+  transform: rotate(-26.5deg);
+  box-shadow: 0px 14px 7px -9px #e60073;
 }
 
 #yellow
 {
-  fill: rgba(255, 255, 0, 0.3); 
+  border-bottom: 200px solid #b3b300;
+  /* pressed color: #ffff00 */
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;;
+  height: 0;
+  width: 200px;
+  transform: rotate(26.5deg);
+  margin-right: -179px;
+  box-shadow: 0px 14px 7px -9px #666600;
 }
 
 #score-count
 {
-  font-size: 11px;
-  fill: #e8e8e8;
-  font-family: 'Orbitron', sans-serif;
 }
 
 #score-text
