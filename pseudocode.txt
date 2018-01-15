@@ -81,3 +81,8 @@ need to implement victory condition
 need to refactor repetitive code in colorPress blocks
 
 check to see if onOffToggle function needs arguments?!
+
+Okay everything seems to be working for mobile and Safari for Simon 2.0
+Need to delete commented out code and console.logs and upload to server
+Simon1.0 needs to be called Simon-svg.timlongoria.com and simon 2.0 should
+be called simon.timlongoria.com
