@@ -38,9 +38,29 @@ body
   margin-bottom: 4vw;
 }
 
+#blue-pressed
+{
+  border-bottom: 10vw solid #00f9ff;
+  /* pressed color #00f9ff*/
+  transform: rotate(-153.5deg);
+  box-shadow: 0px 14px 7px -9px #006466;
+  margin-bottom: 4vw;
+
+}
+
 #green
 {
   border-bottom: 10vw solid #1fcc00;
+  /* pressed color: #39ff14 */
+  transform: rotate(153.5deg);
+  margin-right: 1.5vw;
+  box-shadow: 0px 14px 7px -9px #138000;
+  margin-bottom: 4vw;
+}
+
+#green-pressed
+{
+  border-bottom: 10vw solid #39ff14;
   /* pressed color: #39ff14 */
   transform: rotate(153.5deg);
   margin-right: 1.5vw;
@@ -57,9 +77,28 @@ body
   margin-top: 4vw;
 }
 
+#red-pressed
+{
+  border-bottom: 10vw solid #ff69b4;
+  /* pressed color: #ff69b4 */
+  transform: rotate(-26.5deg);
+  box-shadow: 0px 14px 7px -9px #e60073;
+  margin-top: 4vw;
+}
+
 #yellow
 {
   border-bottom: 10vw solid #b3b300;
+  /* pressed color: #ffff00 */
+  transform: rotate(26.5deg);
+  margin-right: 1.5vw;
+  box-shadow: 0px 14px 7px -9px #666600;
+  margin-top: 4vw;
+}
+
+#yellow-pressed
+{
+  border-bottom: 10vw solid #ffff00;
   /* pressed color: #ffff00 */
   transform: rotate(26.5deg);
   margin-right: 1.5vw;
@@ -116,6 +155,14 @@ body
   font-size: 75px;
 }
 
+#on-button
+{
+  color: #0e7c7b;
+  background-color: #19e6e2;
+  /*background-color: #14b8b5;
+  color: white;*/
+}
+
 button
 {
   height:50px;
@@ -128,6 +175,11 @@ button
   outline: none;
   color: #0e7c7b;
   background-color: #19e6e2;
+}
+
+.button-pressed
+{
+
 }
 
 button:hover
@@ -170,6 +222,13 @@ button:hover
     margin-bottom: 9vw;
   }
 
+  #green-pressed
+  {
+    border-bottom: 20vw solid #39ff14;
+    /* pressed color: #39ff14 */
+    margin-right: -2em;
+    margin-bottom: 9vw;
+  }
   #blue
   {
     border-bottom: 20vw solid #00b0b3;
@@ -177,6 +236,13 @@ button:hover
 
   }
 
+  #blue-pressed
+  {
+    border-bottom: 20vw solid #00f9ff;
+    /* pressed color #00f9ff*/
+    margin-bottom: 9vw;
+
+}
   #yellow
   {
     border-bottom: 20vw solid #b3b300;
@@ -184,10 +250,23 @@ button:hover
     margin-top: 9vw;
 
   }
+  #yellow-pressed
+  {
+    border-bottom: 20vw solid #ffff00;
+    /* pressed color: #ffff00 */
+    margin-right: -2em;
+    margin-top: 9vw;
+}
 
   #red
   {
     border-bottom: 20vw solid #ff3399;
+    margin-top: 9vw;
+  }
+  #red-pressed
+  {
+    border-bottom: 20vw solid #ff69b4;
+    /* pressed color: #ff69b4 */
     margin-top: 9vw;
   }
 }
