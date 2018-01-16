@@ -7,8 +7,6 @@ This is an interactive representation of the Simon electronic memory game.
 It runs in the browser, just open index.html with your favorite browser or
 go to http://simon.timlongoria.com to try it out!
 
-Does not work in Safari,even after a couple function rewrites. May have to scrap all of this and start over for those folks who use applebooks or mactabs or whatever they're called. 
-
 ### Instructions
 
 Most buttons should be self-explanatory. First turn the game on, then hitting
