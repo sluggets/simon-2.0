@@ -35,20 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var strictPress = document.getElementById("strict");
   var onOffButton = document.getElementById("on-button");
 
-  blueAudio = 'audio/blue.mp3';
-  greenAudio = 'audio/green.mp3';
-  redAudio = 'audio/red.mp3';
-  yellowAudio = 'audio/yellow.mp3';
-  buzzer = 'audio/error.mp3';
-  /*colorArr = [blueAudio, greenAudio, redAudio, yellowAudio];
-  enableAudio(bluePress, blueAudio);
-  enableAudio(greenPress, greenAudio);
-  enableAudio(yellowPress, yellowAudio);
-  enableAudio(redPress, redAudio)
-  for (var i = 0; i < 4; i++)
-  {
-    enableAudio(startPress, colorArr[i]);
-  }*/
   // sets listeners for when mousedowns happen to change button colors
   bluePress.addEventListener("mousedown", function () {
     if (!onFlag || blocked)
@@ -60,16 +46,28 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   greenPress.addEventListener("mousedown", function () {
+    if (!onFlag || blocked)
+    {
+      return;
+    }
     toggleColor(greenPress);
     userButtonPress(greenPress);
   });
 
   yellowPress.addEventListener("mousedown", function () {
+    if (!onFlag || blocked)
+    {
+      return;
+    }
     toggleColor(yellowPress);
     userButtonPress(yellowPress);
   });
 
   redPress.addEventListener("mousedown", function () {
+    if (!onFlag || blocked)
+    {
+      return;
+    }
     toggleColor(redPress);
     userButtonPress(redPress);
   });
@@ -80,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
 
-    //buttonsFeedback(startPress);
     resetAll();
     winningPatternArr = startGame();    
     playPattern();
@@ -91,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function() {
     {
       return;
     }
-    //buttonsFeedback(strictPress);
     resetAll();
     strictToggle();
     winningPatternArr = startGame();    
@@ -103,28 +99,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-// triggers color flash to indicate button has been pressed
-function buttonsFeedback(type)
-{
-  if (!onFlag)
-  {
-    return;
-  }
-  // plays button sounds only for main four color buttons
-  if (type.id != "start-game-button" && type.id != "strict-mode-button")
-  {
-    var audioLocation = "audio/" + type.id + ".mp3";
-    var audio = new Audio(audioLocation);
-    audio.play();
-  }
-
-  // toggles button colors
-  toggleColor(type);
-  setTimeout(function() {
-    toggleColor(type);
-  },350);
-  
-}
 
 // this toggles strict mode and appropriate indicator light
 function strictToggle()
@@ -139,16 +113,6 @@ function strictToggle()
   {
     strictIndicator.style.color = "white";
     strictIndicator.style["background-color"] = "#0d7371";
-    // this if statement handles if game is turned off while in strict mode
-    // it will turn off strict mode indicator, it returns after that because
-    // the onOffToggle() function will handle toggling the strict mode status
-    /*if (strictIndicator == null)
-    {
-      var strictIndicator = document.getElementById("strict-mode-indicator-true");
-      strictIndicator.id = "strict-mode-indicator-false"; 
-      return; 
-    }
-    strictIndicator.id = "strict-mode-indicator-true";*/
   }
   strictMode = !strictMode;    
 }
@@ -157,12 +121,7 @@ function strictToggle()
 // also initializes/deinitializes game state and appropriate globals
 function onOffToggle()
 {
-  /*color: #0e7c7b;
-  background-color: #19e6e2;
-  background-color: #14b8b5;
-  color: white;*/
   var onOff = document.getElementById('on-button');
-  console.log("onOff: " + onOff);
   if (onFlag)
   {
     onFlag = !onFlag;
@@ -275,7 +234,6 @@ function playPattern()
     setTimeout(function() {
       var currentPress = document.getElementById(winningPatternArr[counter]);
       toggleColor(currentPress);
-      //buttonsFeedback(currentPress);
       counter++;
       next();
     }, 1250);
@@ -362,7 +320,6 @@ function triggerWin()
 // this handles the user button presses
 function userButtonPress(buttonType)
 {
-  console.log("buttonType: " + buttonType.id);
   buttonType = buttonType.id.slice(0, -8);
   if (blocked || !onFlag)
   {
@@ -373,7 +330,6 @@ function userButtonPress(buttonType)
   {
     userPatternArr.push(buttonType);
   }
-  //buttonsFeedback(buttonType);
   checkUserEntry(userCount, buttonType); 
   userCount++;
 
@@ -383,29 +339,6 @@ function userButtonPress(buttonType)
     patternCount++;
   }
 
-}
-
-function toggleColor(type)
-{
-  var currentButton = document.getElementById(type.id);
-  var style = window.getComputedStyle(currentButton);
-  var currentFill = style.fill;
-  var opacitySlice = currentFill.slice(-4);
-  var rgbSlice = currentFill.slice(0, -4);
-  var newStyle;
-  var rgbCheck = currentFill.slice(0,4);
-  if (opacitySlice == "0.3)")
-  {
-    newStyle = rgbSlice + "1.0)";
-  }
-  else if (rgbCheck[3] != 'a')
-  {
-    var rgbaPrefix = "rgba";
-    var newAlpha = currentFill.slice(3, -1);
-    newStyle =  rgbaPrefix + newAlpha + ",0.3)";
-  }
-
-  currentButton.style.fill = newStyle;
 }
 
 function changeColor(type)
@@ -428,7 +361,6 @@ function changeColor(type)
 
 function toggleColor(type)
 {
-  console.log("type: " + type.id.slice(0, 3));
   changeColor(type);
   setTimeout(function() {
     changeColor(type);

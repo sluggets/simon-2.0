@@ -16,14 +16,6 @@ body
 
 .grid-item
 {
-  /*border-bottom: 200px solid #17bebb;
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;;
-  height: 0;
-  width: 200px;
-  margin: 90px;
-  box-shadow: 0px 14px 2px -6px #0e7c7b;
-  text-shadow: 1px -1px 4px #0e7c7b;*/
   border-left: 5vw solid transparent;
   border-right: 5vw solid transparent;;
   height: 0;
@@ -32,7 +24,6 @@ body
 #blue
 {
   border-bottom: 10vw solid #00b0b3;
-  /* pressed color #00f9ff*/
   transform: rotate(-153.5deg);
   box-shadow: 0px 14px 7px -9px #006466;
   margin-bottom: 4vw;
@@ -41,9 +32,8 @@ body
 #blue-pressed
 {
   border-bottom: 10vw solid #00f9ff;
-  /* pressed color #00f9ff*/
   transform: rotate(-153.5deg);
-  box-shadow: 0px 14px 7px -9px #006466;
+  box-shadow: 0px 14px 7px -16px #006466;
   margin-bottom: 4vw;
 
 }
@@ -51,7 +41,6 @@ body
 #green
 {
   border-bottom: 10vw solid #1fcc00;
-  /* pressed color: #39ff14 */
   transform: rotate(153.5deg);
   margin-right: 1.5vw;
   box-shadow: 0px 14px 7px -9px #138000;
@@ -61,17 +50,15 @@ body
 #green-pressed
 {
   border-bottom: 10vw solid #39ff14;
-  /* pressed color: #39ff14 */
   transform: rotate(153.5deg);
   margin-right: 1.5vw;
-  box-shadow: 0px 14px 7px -9px #138000;
+  box-shadow: 0px 14px 7px -16px #138000;
   margin-bottom: 4vw;
 }
 
 #red
 {
   border-bottom: 10vw solid #ff3399;
-  /* pressed color: #ff69b4 */
   transform: rotate(-26.5deg);
   box-shadow: 0px 14px 7px -9px #e60073;
   margin-top: 4vw;
@@ -80,16 +67,14 @@ body
 #red-pressed
 {
   border-bottom: 10vw solid #ff69b4;
-  /* pressed color: #ff69b4 */
   transform: rotate(-26.5deg);
-  box-shadow: 0px 14px 7px -9px #e60073;
+  box-shadow: 0px 14px 7px -16px #e60073;
   margin-top: 4vw;
 }
 
 #yellow
 {
   border-bottom: 10vw solid #b3b300;
-  /* pressed color: #ffff00 */
   transform: rotate(26.5deg);
   margin-right: 1.5vw;
   box-shadow: 0px 14px 7px -9px #666600;
@@ -99,55 +84,12 @@ body
 #yellow-pressed
 {
   border-bottom: 10vw solid #ffff00;
-  /* pressed color: #ffff00 */
   transform: rotate(26.5deg);
   margin-right: 1.5vw;
-  box-shadow: 0px 14px 7px -9px #666600;
+  box-shadow: 0px 14px 7px -16px #666600;
   margin-top: 4vw;
 }
 
-#score-count
-{
-}
-
-#score-text
-{
-}
-
-#count-box
-{
-  fill: #404040;
-}
-
-#start-game-button
-{
-  fill: rgba(204, 0, 0, 0.3);
-}
-
-#strict-mode-button
-{
-  fill: rgba(204, 0, 0, 0.3);
-}
-
-#game-on-button
-{
-  fill: #808080
-}
-
-#game-off-button
-{
-  fill: #404040; 
-}
-
-#strict-mode-indicator-false
-{
-  fill: #404040;
-}
-
-#strict-mode-indicator-true
-{
-  fill: red;
-}
 
 #score
 {
@@ -159,8 +101,6 @@ body
 {
   color: #0e7c7b;
   background-color: #19e6e2;
-  /*background-color: #14b8b5;
-  color: white;*/
 }
 
 button
@@ -225,7 +165,6 @@ button:hover
   #green-pressed
   {
     border-bottom: 20vw solid #39ff14;
-    /* pressed color: #39ff14 */
     margin-right: -2em;
     margin-bottom: 9vw;
   }
@@ -239,7 +178,6 @@ button:hover
   #blue-pressed
   {
     border-bottom: 20vw solid #00f9ff;
-    /* pressed color #00f9ff*/
     margin-bottom: 9vw;
 
 }
@@ -253,7 +191,6 @@ button:hover
   #yellow-pressed
   {
     border-bottom: 20vw solid #ffff00;
-    /* pressed color: #ffff00 */
     margin-right: -2em;
     margin-top: 9vw;
 }
@@ -266,7 +203,6 @@ button:hover
   #red-pressed
   {
     border-bottom: 20vw solid #ff69b4;
-    /* pressed color: #ff69b4 */
     margin-top: 9vw;
   }
 }
